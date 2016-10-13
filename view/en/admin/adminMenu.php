@@ -37,7 +37,14 @@
             <li><a id="logout" href="" token="<?php echo $_SESSION["token"]; ?>">Logout</a></li>
         </ul>
         <ul class="side-nav" id="menuMobile">
-            <!-- side nav quand ecran trop petit... A ne pas faire comme le grand menu-->
+            <li><a href="/">Home Site</a></li>
+            <li><a href="/admin/panel">Home Panel</a></li>
+            <li><a href="/admin/register">Add Admin</a></li>
+            <li><a class="dropdown-button-menu" href="/admin/update/product">Update</a></li>
+            <li><a class="dropdown-button-menu" href="/admin/add/product">Add</a></li>
+            <li><a class="language" href="">FR</a></li>
+            <li><a class="language" href="">EN</a></li>
+            <li><a id="logout" href="" token="<?php echo $_SESSION["token"]; ?>">Logout</a></li>
         </ul>
     </div>
 </nav>

@@ -33,7 +33,12 @@
             <li><a class="language" href="">EN</a></li>
         </ul>
         <ul class="side-nav" id="menuMobile">
-            <!-- side nav quand ecran trop petit... A ne pas faire comme le grand menu-->
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">Why Choose the Tile ?</a></li>
+            <li><a class="dropdown-button-menu" href="/products">Our Products</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a class="language" href="">FR</a></li>
+            <li><a class="language" href="">EN</a></li>
         </ul>
     </div>
 </nav>

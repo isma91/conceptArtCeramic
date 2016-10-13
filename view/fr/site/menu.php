@@ -33,7 +33,12 @@
             <li><a class="language" href="">EN</a></li>
         </ul>
         <ul class="side-nav" id="menuMobile">
-            <!-- side nav quand ecran trop petit... A ne pas faire comme le grand menu-->
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/about">Pour Choisir Le Çini ?</a></li>
+            <li><a class="dropdown-button-menu" href="/products">Nos Produits</a></li>
+            <li><a href="/contact">Nous Contacter</a></li>
+            <li><a class="language" href="">FR</a></li>
+            <li><a class="language" href="">EN</a></li>
         </ul>
     </div>
 </nav>
