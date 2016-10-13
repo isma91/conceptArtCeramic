@@ -2,3 +2,8 @@
 config.php
 /* PHPSTORM folder   */
 .idea
+media/img
+!media/img/logo.*
+!media/img/404.jpg
+!media/img/index.php
+!media/img/product/index.php
