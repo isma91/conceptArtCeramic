@@ -1,2 +1,4 @@
-/* only config file */
+/* config file */
 config.php
+/* PHPSTORM folder   */
+.idea
