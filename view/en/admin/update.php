@@ -23,7 +23,7 @@
         <?php if ($this->success !== null) { echo $this->success; } ?>
     </div>
     <form action="/admin/update/<?php echo $this->thing["slug"] . "/" . $this->thing["id"]; ?>" method="post" class="row" enctype="multipart/form-data">
-        <?php var_dump($this->thing);
+        <?php
         if ($this->thing["slug"] === "info") {
             ?>
             <div class="row">
@@ -41,6 +41,7 @@
                 </div>
             </div>
             <div class="row">
+                <label>Site under Maintenance: </label>
                 <div class="switch">
                     <label>
                         Off
