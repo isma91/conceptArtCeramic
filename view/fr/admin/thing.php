@@ -23,16 +23,19 @@
         <?php if ($this->success !== null) { echo $this->success; } ?>
     </div>
     <ul class="collection">
-        <?php
-        if (count($this->thing["thing"]) === 0) {
-            ?>
-            <li class="collection-item">Pas de <?php echo $this->thing["title"]; ?> enregistrer</li>
-            <?php
+        <?php var_dump($this->thing);
+        if ($this->thing["slug"] === "product") {
         } else {
-            foreach ($this->thing["thing"] as $id => $name) {
+            if (count($this->thing["thing"]) == 0) {
                 ?>
-                <li class="collection-item center"><?php echo $name; ?><a class="btn waves-effect right" href="/admin/update/<?php echo $this->thing["slug"]; ?>/<?php echo $id; ?>">Modifier</a></li>
+                <li class="collection-item">Pas de <?php echo $this->thing["title"]; ?> enregistrer</li>
                 <?php
+            } else {
+                foreach ($this->thing["thing"] as $id => $name) {
+                    ?>
+                    <li class="collection-item center"><?php echo $name; ?><a class="btn waves-effect right" href="/admin/update/<?php echo $this->thing["slug"]; ?>/<?php echo $id; ?>">Modifier</a></li>
+                    <?php
+                }
             }
         }
         ?>
