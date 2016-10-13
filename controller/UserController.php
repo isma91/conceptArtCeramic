@@ -120,11 +120,17 @@ class UserController
         $thing["slug"] = $type;
         $array = array(
             "frCategory" => array("name" => "Catégorie", "title" => "une nouvelle"),
+            "enCategory" => array("name" => "Category", "title" => "add a new"),
             "frColor" => array("name" => "Couleur", "title" => "une nouvelle"),
+            "enColor" => array("name" => "Color", "title" => "add a new"),
             "frMaterial" => array("name" => "Materiau", "title" => "un nouveau"),
+            "enMaterial" => array("name" => "Material", "title" => "add a new"),
             "frSize" => array("name" => "Taille", "title" => "une nouvelle"),
+            "enSize" => array("name" => "Size", "title" => "add a new"),
             "frUsage" => array("name" => "Utilisation", "title" => "une nouvelle"),
-            "frProduct" => array("name" => "Produit", "title" => "un nouveau"),
+            "enUsage" => array("name" => "Usage", "title" => "add a new"),
+            "frProduct" => array("name" => "Produit", "title" => "add a new"),
+            "enProduct" => array("name" => "Product", "title" => "add a new"),
         );
         $arrayLabel = array(
             "fr" => array("fr" => "en Français", "en" => "en Anglais"),
@@ -246,21 +252,15 @@ class UserController
     }
 
     public function thingPage($type, $error = null, $success = null) {
+        $thing = array();
         if ($type === "info") {
             $this->displayThing($type, 0);
         } elseif ($type === "product") {
-            var_dump($type);
+            $bdd = new Bdd();
+            $productsArray = $bdd->select("product", array("*"));
+            $thing["thing"] = $productsArray;
         } else {
             $site = new SiteInfo();
-            $thing["slug"] = $type;
-            $array = array(
-                "frCategory" => "Catégories",
-                "frColor" => "Couleurs",
-                "frMaterial" => "Materiaux",
-                "frSize" => "Tailles",
-                "frUsage" => "Utilisations",
-                "frProduct" => "Produits",
-            );
             $arrayField = array(
                 "category" => "getCategories",
                 "color" => "getColors",
@@ -270,11 +270,26 @@ class UserController
             );
             $func = $arrayField[$type];
             $thing["thing"] = $site->$func();
-            $thing["title"] = $array[$_SESSION["lang"] . ucfirst($type)];
             if ($type === "info") {
                 $config = new Config();
                 $thing = array("maintenance" => $config->getMaintenance());
             }
+            $thing["slug"] = $type;
+            $array = array(
+                "frCategory" => "Catégories",
+                "enCategory" => "Categories",
+                "frColor" => "Couleurs",
+                "enColor" => "Colors",
+                "frMaterial" => "Materiaux",
+                "enMaterial" => "Materials",
+                "frSize" => "Tailles",
+                "enSize" => "Sizes",
+                "frUsage" => "Utilisations",
+                "enUsage" => "Usages",
+                "frProduct" => "Produits",
+                "enProduct" => "Products",
+            );
+            $thing["title"] = $array[$_SESSION["lang"] . ucfirst($type)];
             $this->redirectIfNotLoged("admin#thing", array("error" => $error, "success" => $success, "thing" => $thing));
         }
     }
@@ -282,7 +297,6 @@ class UserController
     public function displayThing($type, $id, $error = null, $success = null)
     {
         if ($type === "product") {
-            var_dump($type, $id);
         } else {
             $site = new SiteInfo();
             $arrayField = array(
