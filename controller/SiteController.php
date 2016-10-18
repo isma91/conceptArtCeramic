@@ -4,6 +4,8 @@ namespace controller;
 
 use model\Bdd;
 use model\Config;
+use model\Form;
+use model\Message;
 use model\Product;
 use model\View;
 
@@ -145,7 +147,29 @@ class SiteController
 
     public function sendMessage()
     {
-        var_dump($_POST);
+        $view = new View("site#contact");
+        $form = new Form();
+        $message = new Message();
+        $messages = $message->getMessages();
+        foreach ($_POST as $field => $value) {
+            if (empty($value)) {
+                $view->set($field, $value);
+                $view->set("error", $messages["error"]["emptyField"]);
+                $view->render();
+                return;
+                break;
+            }
+        }
+        $add = $form->add("contact", $_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
+        if ($add["error"] === "") {
+            $view->set("success", $messages["success"]["addForm"]);
+        } else {
+            foreach ($_POST as $field => $value) {
+                $view->set($field, $value);
+            }
+            $view->set("error", $add["error"]);
+        }
+        $view->render();
     }
 
     public function switchLanguage()
