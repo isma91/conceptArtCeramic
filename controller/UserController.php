@@ -111,7 +111,16 @@ class UserController
 
     public function adminPanel()
     {
-        $this->redirectIfNotLoged("admin#panel");
+        $bdd = new Bdd();
+        $field = $_SESSION["lang"] . "Name";
+        $arrayNotNull = array("form.name", "form.email", "form.tel", "form.message", "form.idProduct", "form.date", "product.$field");
+        $arrayNull = array("name", "email", "tel", "message", "date");
+        $innerJoin = array(
+            array("table" => "product", "on" => "product.id = form.idProduct")
+        );
+        $formsNull = $bdd->select("form", $arrayNull, "idProduct IS NULL");
+        $formsNotNull = $bdd->select("form", $arrayNotNull, "form.idProduct IS NOT NULL", $innerJoin);
+        $this->redirectIfNotLoged("admin#panel", array("formsNull" => $formsNull, "formsNotNull" => $formsNotNull));
     }
 
     public function thing($type, array $arrayValue = array(), $error = null)
