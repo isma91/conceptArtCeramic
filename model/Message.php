@@ -55,7 +55,10 @@ class Message
             "createFolder" => "Error lors de la création d'un dossier.",
             "moveImg" => "Error lors de l'ajout de l'image %s.",
             "addProduct" => "Error lors de l'ajout du Produit %s.",
-            "updateProduct" => "Un problème est survenue lors de la modification du Produit."
+            "updateProduct" => "Un problème est survenue lors de la modification du Produit.",
+            "emailFormat" => "Email non valide",
+            "telFormat" => "Numéro de tel non valide.",
+            "addForm" => "Un problème est survenue lors de l'envoie de votre message.",
         );
         $successFrMessage = array(
             "adminCreated" => "Vous avez ajouté l'admin %s avec succès.",
@@ -72,6 +75,7 @@ class Message
             "updateUsage" => "Utilisation %s modifier avec succès.",
             "addProduct" => "Produit %s ajouter avec succès.",
             "updateProduct" => "Produit %s modifier avec succès.",
+            "addForm" => "Message envoyer avec succès.",
         );
         $infoFrMessage = array(
             "maintenance" => "Le site affiche qu'il est en maintenance."
@@ -103,6 +107,9 @@ class Message
             "moveImg" => "Error while add the picture %s.",
             "addProduct" => "Error when add the Product %s.",
             "updateProduct" => "A problem occured when we update the Product.",
+            "emailFormat" => "Invalid email.",
+            "telFormat" => "Invalid Tel number.",
+            "addForm" => "A problem occured when we send your message.",
         );
         $successEnMessage = array(
             "adminCreated" => "Admin %s successfully added.",
@@ -119,6 +126,7 @@ class Message
             "updateUsage" => "Usage %s updated successfully.",
             "addProduct" => "Product %s added successfully.",
             "updateProduct" => "Product %s updated successfully.",
+            "addForm" => "Message send successfully.",
         );
         $infoEnMessage = array(
             "maintenance" => "The Site is under Maintenance."
