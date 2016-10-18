@@ -73,7 +73,6 @@ INSERT INTO `color` (`id`, `frName`, `enName`) VALUES
 
 CREATE TABLE `form` (
   `id` int(11) NOT NULL,
-  `type` text NOT NULL,
   `name` text NOT NULL,
   `email` text NOT NULL,
   `tel` text NOT NULL,
