@@ -87,7 +87,9 @@ a:hover,
 a:visited,
 a:active,
 .dropdown-content li>a,
-.dropdown-content li>span {
+.dropdown-content li>span,
+.tabs .tab a,
+.tabs .tab a:hover {
 	text-decoration: none;
 	color: #000000;
 }
@@ -106,7 +108,8 @@ a:active,
 }
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span,
-.owl-theme .owl-nav [class*=owl-]:hover {
+.owl-theme .owl-nav [class*=owl-]:hover,
+.tabs .indicator {
 	background-color: #26a69a;
 }
 .owl-carousel {
@@ -132,7 +135,8 @@ a:active,
 	font-weight: bold;
 	font-size: 1.3em;
 }
-.productCount {
+.productCount,
+.tabs .tab a.active {
 	color: #26a69a;
 }
 .table-of-contents {
@@ -142,9 +146,6 @@ a:active,
 	font-weight: bold;
 	font-size: 1.3em;
 }
-/**
- * Black and White at the begining, display true color on hover
- */
 .productImg img {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
@@ -154,4 +155,7 @@ a:active,
 .productImg img:hover {
 	-webkit-filter: grayscale(0);
 	filter: grayscale(0);
+}
+td a {
+	display: block;
 }
