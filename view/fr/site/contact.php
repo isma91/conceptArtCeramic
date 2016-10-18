@@ -13,6 +13,12 @@
 <body>
 <?php include("menu.php"); ?>
 <div class="container">
+    <div class="row failed">
+        <?php if ($this->error !== null) { echo $this->error; } ?>
+    </div>
+    <div class="row success">
+        <?php if ($this->success !== null) { echo $this->success; } ?>
+    </div>
     <div class="row">
         <div class="col s12 m9 l10">
             <div id="contact" class="section scrollspy">
