@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Jeu 13 Octobre 2016 à 18:09
+-- Généré le :  Mar 18 Octobre 2016 à 15:25
 -- Version du serveur :  5.7.15-0ubuntu0.16.04.1
 -- Version de PHP :  7.0.8-0ubuntu0.16.04.3
 
@@ -64,6 +64,23 @@ INSERT INTO `color` (`id`, `frName`, `enName`) VALUES
 (1, 'Noir', 'Black'),
 (2, 'Rouge', 'Red'),
 (3, 'Vert', 'Green');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `form`
+--
+
+CREATE TABLE `form` (
+  `id` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `tel` text NOT NULL,
+  `message` text NOT NULL,
+  `idProduct` int(11) DEFAULT NULL,
+  `date` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -149,7 +166,8 @@ INSERT INTO `size` (`id`, `name`) VALUES
 (2, '20x20'),
 (3, '25x25'),
 (4, '30x30'),
-(7, '40x40');
+(7, '40x40'),
+(8, '50x50');
 
 -- --------------------------------------------------------
 
@@ -193,7 +211,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `lastname`, `firstname`, `username`, `email`, `password`, `token`) VALUES
-(1, 'Sahbaz', 'Cemil', 'cemil', 'conceptceram@yahoo.com', '$2y$10$BMX5qCy9pKTpEag17a4vEeINbVQL3iGaYNYJlE.OqIIH0qFCUDBGW', NULL);
+(1, 'Sahbaz', 'Cemil', 'cemil', 'conceptceram@yahoo.com', '$2y$10$BMX5qCy9pKTpEag17a4vEeINbVQL3iGaYNYJlE.OqIIH0qFCUDBGW', 'a295fbe11a3785e913b473e11d8c317b2c907f83');
 
 --
 -- Index pour les tables exportées
@@ -209,6 +227,12 @@ ALTER TABLE `category`
 -- Index pour la table `color`
 --
 ALTER TABLE `color`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `form`
+--
+ALTER TABLE `form`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -262,6 +286,11 @@ ALTER TABLE `category`
 ALTER TABLE `color`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT pour la table `form`
+--
+ALTER TABLE `form`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT pour la table `material`
 --
 ALTER TABLE `material`
@@ -270,7 +299,7 @@ ALTER TABLE `material`
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `site`
 --
@@ -280,7 +309,7 @@ ALTER TABLE `site`
 -- AUTO_INCREMENT pour la table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `usage`
 --
