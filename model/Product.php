@@ -146,6 +146,10 @@ class Product
 
     public function add($frName, $enName, array $category, array $color, array $material, array $size, array $usage, $frDescription, $enDescription, array $img)
     {
+        $frName = addslashes($frName);
+        $enName = addslashes($enName);
+        $frDescription = addslashes($frDescription);
+        $enDescription = addslashes($enDescription);
         $names = array("fr" => $frName, "en" => $enName);
         $return = array("return" => "", "error" => "");
         $message = new Message();
