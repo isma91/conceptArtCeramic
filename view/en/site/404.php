@@ -35,5 +35,6 @@
         <a class="btn waves-effect" href="/">Home Page</a>
     </div>
 </div>
+<?php include("footer.html"); ?>
 </body>
 </html>
