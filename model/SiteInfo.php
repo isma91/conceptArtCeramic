@@ -149,9 +149,9 @@ class SiteInfo
             if (!empty($select)) {
                 foreach ($select as $array) {
                     if ($tableName !== "size") {
-                        $this->$propertyName[$array["id"]] = $array[$_SESSION["lang"] . "Name"];
+                        $this->$propertyName[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
                     } else {
-                        $this->$propertyName[$array["id"]] = $array["name"];
+                        $this->$propertyName[$array["id"]] = stripslashes($array["name"]);
                     }
                 }
             }
@@ -197,7 +197,7 @@ class SiteInfo
             }
         } else {
             if (!$this->checkDuplicate($type, $arrayValue[$_SESSION["lang"]])) {
-                $arrayField = array("frName" => $arrayValue["fr"], "enName" => $arrayValue["en"]);
+                $arrayField = array("frName" => addslashes($arrayValue["fr"]), "enName" => addslashes($arrayValue["en"]));
                 $add = $bdd->insert($type, $arrayField);
                 if ($add) {
                     return true;
