@@ -109,7 +109,10 @@ a:active,
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span,
 .owl-theme .owl-nav [class*=owl-]:hover,
-.tabs .indicator {
+.tabs .indicator,
+footer.page-footer,
+footer.page-footer .footer-copyright,
+.footer-copyright footer.page-footer {
 	background-color: #26a69a;
 }
 .owl-carousel {
