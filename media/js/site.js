@@ -7,7 +7,7 @@ $(document).ready(function () {
         nav: true,
         navText: ["<", ">"],
         autoplay: true,
-        autoplayTimeout: 5000
+        autoplayTimeout: 3000
     });
     $('.dropdown-button-menu').dropdown({
         inDuration: 500,
