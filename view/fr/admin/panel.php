@@ -56,7 +56,7 @@
                             <td><?php echo $array["name"]; ?></td>
                             <td><?php echo $array["email"]; ?></td>
                             <td><?php echo $array["tel"]; ?></td>
-                            <td><?php echo $array["message"]; ?></td>
+                            <td><?php echo stripslashes($array["message"]); ?></td>
                             <td><?php echo $array["date"]; ?></td>
                         </tr>
                         <?php
@@ -95,8 +95,8 @@
                             <td><?php echo $array["name"]; ?></td>
                             <td><?php echo $array["email"]; ?></td>
                             <td><?php echo $array["tel"]; ?></td>
-                            <td><?php echo $array["message"]; ?></td>
-                            <td><a class="btn waves-effect" href="/product/<?php echo $array["idProduct"]; ?>"><?php echo $array[$field]; ?></a></td>
+                            <td><?php echo stripslashes($array["message"]); ?></td>
+                            <td><a class="btn waves-effect" target="_blank" href="/product/<?php echo $array["idProduct"]; ?>"><?php echo $array[$field]; ?></a></td>
                             <td><?php echo $array["date"]; ?></td>
                         </tr>
                         <?php
