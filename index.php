@@ -81,6 +81,10 @@ $router->get("/products/:category/:material", "Site#products");
  */
 $router->get("/product/:id", "Site#product");
 /*
+ * Send Estimate for a product
+ */
+$router->post("/product/:id", "Site#sendDevis");
+/*
  * Display the About Page
  */
 $router->get("/about", "Site#about");
