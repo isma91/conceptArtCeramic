@@ -17,7 +17,7 @@
         <?php
         if ($this->func == "categories") {
             foreach ($this->categoriesMaterialsProducts as $category => $array) {
-                if (count($array) !== 0 && $array["count"] != 0) {
+                if (count($array) != 0 && $array["count"] != 0) {
                     ?>
                     <div class="col s12 m4 l3">
                         <div class="card">
@@ -34,7 +34,7 @@
             }
         } elseif ($this->func == "materials") {
             foreach ($this->categoriesMaterialsProducts as $material => $array) {
-                if (count($array["product"]) !== 0) {
+                if (count($array) != 0 && $array["count"] != 0) {
                     ?>
                     <div class="col s12 m4 l3">
                         <div class="card">
