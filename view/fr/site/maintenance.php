@@ -34,5 +34,6 @@
         <h2 class="title">Nous reviendrons vers vous dès que possible</h2>
     </div>
 </div>
+<?php include("footer.html"); ?><?php include("footer.html"); ?>
 </body>
 </html>
