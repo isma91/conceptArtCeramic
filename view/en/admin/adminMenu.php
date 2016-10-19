@@ -9,7 +9,6 @@
     <li><a href="/admin/update/product">Product</a></li>
     <li><a href="/admin/update/category">Category</a></li>
     <li><a href="/admin/update/material">Material</a></li>
-    <li><a href="/admin/update/color">Color</a></li>
     <li><a href="/admin/update/size">Size</a></li>
     <li><a href="/admin/update/usage">Usage</a></li>
 </ul>
@@ -17,7 +16,6 @@
     <li><a href="/admin/add/product">Product</a></li>
     <li><a href="/admin/add/category">Category</a></li>
     <li><a href="/admin/add/material">Material</a></li>
-    <li><a href="/admin/add/color">Color</a></li>
     <li><a href="/admin/add/size">Size</a></li>
     <li><a href="/admin/add/usage">Usage</a></li>
 </ul>
