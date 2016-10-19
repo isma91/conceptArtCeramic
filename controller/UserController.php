@@ -66,31 +66,29 @@ class UserController
     {
         $message = new Message();
         $messages = $message->getMessages();
-        $viewLogin = new View("admin#login");
-        $viewPanel = new View("admin#panel");
+        $view = new View("admin#login");
         foreach ($_POST as $field => $value) {
             if (empty($value)) {
-                $viewLogin->set('loginEmail', $_POST["loginEmail"]);
-                $viewLogin->set("error", $messages["error"]["emptyField"]);
-                $viewLogin->render();
+                $view->set('loginEmail', $_POST["loginEmail"]);
+                $view->set("error", $messages["error"]["emptyField"]);
+                $view->render();
                 return;
                 break;
             }
         }
         $user = new User();
         if (!$user->userCredential($_POST["loginEmail"], $_POST["password"])) {
-            $viewLogin->set('loginEmail', $_POST["loginEmail"]);
-            $viewLogin->set('error', $messages["error"]["wrongCredential"]);
-            $viewLogin->render();
+            $view->set('loginEmail', $_POST["loginEmail"]);
+            $view->set('error', $messages["error"]["wrongCredential"]);
+            $view->render();
             return;
         }
         $userCredential = $user->getUser();
         if ($userCredential !== false) {
-            foreach ($userCredential as $name => $value) {
-                $viewPanel->set($name, $value);
-            }
+            $this->adminPanel();
+        } else {
+            $view->render();
         }
-        $viewPanel->render();
     }
 
     /**
@@ -118,8 +116,8 @@ class UserController
         $innerJoin = array(
             array("table" => "product", "on" => "product.id = form.idProduct")
         );
-        $formsNull = $bdd->select("form", $arrayNull, "idProduct IS NULL");
-        $formsNotNull = $bdd->select("form", $arrayNotNull, "form.idProduct IS NOT NULL", $innerJoin);
+        $formsNull = $bdd->select("form", $arrayNull, "idProduct = 0");
+        $formsNotNull = $bdd->select("form", $arrayNotNull, "form.idProduct != 0", $innerJoin);
         $this->redirectIfNotLoged("admin#panel", array("formsNull" => $formsNull, "formsNotNull" => $formsNotNull));
     }
 
