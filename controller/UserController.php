@@ -128,8 +128,6 @@ class UserController
         $array = array(
             "frCategory" => array("name" => "Catégorie", "title" => "une nouvelle"),
             "enCategory" => array("name" => "Category", "title" => "add a new"),
-            "frColor" => array("name" => "Couleur", "title" => "une nouvelle"),
-            "enColor" => array("name" => "Color", "title" => "add a new"),
             "frMaterial" => array("name" => "Materiau", "title" => "un nouveau"),
             "enMaterial" => array("name" => "Material", "title" => "add a new"),
             "frSize" => array("name" => "Taille", "title" => "une nouvelle"),
@@ -165,7 +163,6 @@ class UserController
             $site = new SiteInfo();
             $arrayField = array(
                 "category" => "getCategories",
-                "color" => "getColors",
                 "material" => "getMaterials",
                 "size" => "getSizes",
                 "usage" => "getUsages"
@@ -175,7 +172,6 @@ class UserController
             }
             $thing["label"] = array(
                 "category" => array("fr" => "Catégorie", "en" => "Category"),
-                "color" => array("fr" => "Couleur", "en" => "Color"),
                 "material" => array("fr" => "Materiau", "en" => "Material"),
                 "size" => array("fr" => "Taille", "en" => "Size"),
                 "usage" => array("fr" => "Utilisation", "en" => "Usage")
@@ -203,7 +199,7 @@ class UserController
                     break;
                 }
             }
-            $add = $product->add($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["color"], $_POST["material"], $_POST["size"], $_POST["usage"], $_POST["frDescription"], $_POST["enDescription"], $_FILES["img"]);
+            $add = $product->add($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $_POST["frDescription"], $_POST["enDescription"], $_FILES["img"]);
             if ($add["error"] !== "") {
                 $this->thing("product", $arrayValue, $add["error"]);
             } else {
@@ -262,15 +258,16 @@ class UserController
         $thing = array();
         if ($type === "info") {
             $this->displayThing($type, 0);
+            return;
         } elseif ($type === "product") {
             $bdd = new Bdd();
-            $productsArray = $bdd->select("product", array("*"));
+            $field = $_SESSION["lang"] . "Name";
+            $productsArray = $bdd->select("product", array($field, "img"));
             $thing["thing"] = $productsArray;
         } else {
             $site = new SiteInfo();
             $arrayField = array(
                 "category" => "getCategories",
-                "color" => "getColors",
                 "material" => "getMaterials",
                 "size" => "getSizes",
                 "usage" => "getUsages"
@@ -281,24 +278,22 @@ class UserController
                 $config = new Config();
                 $thing = array("maintenance" => $config->getMaintenance());
             }
-            $thing["slug"] = $type;
-            $array = array(
-                "frCategory" => "Catégories",
-                "enCategory" => "Categories",
-                "frColor" => "Couleurs",
-                "enColor" => "Colors",
-                "frMaterial" => "Materiaux",
-                "enMaterial" => "Materials",
-                "frSize" => "Tailles",
-                "enSize" => "Sizes",
-                "frUsage" => "Utilisations",
-                "enUsage" => "Usages",
-                "frProduct" => "Produits",
-                "enProduct" => "Products",
-            );
-            $thing["title"] = $array[$_SESSION["lang"] . ucfirst($type)];
-            $this->redirectIfNotLoged("admin#thing", array("error" => $error, "success" => $success, "thing" => $thing));
         }
+        $thing["slug"] = $type;
+        $array = array(
+            "frCategory" => "Catégories",
+            "enCategory" => "Categories",
+            "frMaterial" => "Materiaux",
+            "enMaterial" => "Materials",
+            "frSize" => "Tailles",
+            "enSize" => "Sizes",
+            "frUsage" => "Utilisations",
+            "enUsage" => "Usages",
+            "frProduct" => "Produits",
+            "enProduct" => "Products",
+        );
+        $thing["title"] = $array[$_SESSION["lang"] . ucfirst($type)];
+        $this->redirectIfNotLoged("admin#thing", array("error" => $error, "success" => $success, "thing" => $thing));
     }
 
     public function displayThing($type, $id, $error = null, $success = null)
@@ -308,19 +303,23 @@ class UserController
             $site = new SiteInfo();
             $arrayField = array(
                 "category" => "getCategories",
-                "color" => "getColors",
                 "material" => "getMaterials",
                 "size" => "getSizes",
                 "usage" => "getUsages"
             );
             $array = array(
                 "frCategory" => "Catégorie",
-                "frColor" => "Couleur",
+                "enCategory" => "Category",
                 "frMaterial" => "Materiau",
+                "enMaterial" => "Material",
                 "frSize" => "Taille",
+                "enSize" => "Size",
                 "frUsage" => "Utilisation",
+                "enUsage" => "Usage",
                 "frProduct" => "Produit",
+                "enProduct" => "Product",
                 "frInfo" => "Information du Site",
+                "enInfo" => "Information about the Site",
             );
             if ($type !== "info") {
                 $func = $arrayField[$type];

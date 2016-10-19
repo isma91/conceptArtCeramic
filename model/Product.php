@@ -8,7 +8,6 @@ class Product
     private $_frName = "";
     private $_enName = "";
     private $_category = array();
-    private $_color = array();
     private $_material = array();
     private $_size = array();
     private $_usage = array();
@@ -46,14 +45,6 @@ class Product
     public function getCategory()
     {
         return $this->_category;
-    }
-
-    /**
-     * @return string
-     */
-    public function getColor()
-    {
-        return $this->_color;
     }
 
     /**
@@ -111,7 +102,6 @@ class Product
             $product = $bdd->select("product", array("*"), "id = $id")[0];
             $categories = explode("|", $product["idCategory"]);
             $materials = explode("|", $product["idMaterial"]);
-            $colors = explode("|", $product["idColor"]);
             $sizes = explode("|", $product["idSize"]);
             $usages = explode("|", $product["idUsage"]);
             $this->_id = $product["id"];
@@ -125,7 +115,6 @@ class Product
             $array = array(
                 "categories" => "_category",
                 "materials" => "_material",
-                "colors" => "_color",
                 "sizes" => "_size",
                 "usages" => "_usage",
             );
@@ -144,7 +133,7 @@ class Product
         }
     }
 
-    public function add($frName, $enName, array $category, array $color, array $material, array $size, array $usage, $frDescription, $enDescription, array $img)
+    public function add($frName, $enName, array $category, array $material, array $size, array $usage, $frDescription, $enDescription, array $img)
     {
         $frName = addslashes($frName);
         $enName = addslashes($enName);
@@ -155,7 +144,7 @@ class Product
         $message = new Message();
         $messages = $message->getMessages();
         $imgs = "";
-        if (!empty($frName) && !empty($enName) && !empty($category) && !empty($color) && !empty($material) && !empty($size) && !empty($usage) && !empty($frDescription) && !empty($enDescription ) && !empty($img)) {
+        if (!empty($frName) && !empty($enName) && !empty($category)  && !empty($material) && !empty($size) && !empty($usage) && !empty($frDescription) && !empty($enDescription ) && !empty($img)) {
             $bdd = new Bdd();
             foreach ($img["error"] as $num => $error) {
                 if ($error !== 0) {
@@ -166,15 +155,11 @@ class Product
                 $imgs = $imgs . $img["name"][$num] . "|";
             }
             $categories = "";
-            $colors = "";
             $materials = "";
             $sizes = "";
             $usages = "";
             foreach ($category as $value) {
                 $categories = $categories . $value . "|";
-            }
-            foreach ($color as $value) {
-                $colors = $colors . $value . "|";
             }
             foreach ($material as $value) {
                 $materials = $materials . $value . "|";
@@ -186,7 +171,6 @@ class Product
                 $usages = $usages . $value . "|";
             }
             $categories = rtrim($categories, "|");
-            $colors = rtrim($colors, "|");
             $materials = rtrim($materials, "|");
             $sizes = rtrim($sizes, "|");
             $usages = rtrim($usages, "|");
@@ -194,7 +178,6 @@ class Product
                 "frName" => $frName,
                 "enName" => $enName,
                 "idCategory" => $categories,
-                "idColor" => $colors,
                 "idMaterial" => $materials,
                 "idSize" => $sizes,
                 "idUsage" => $usages,
