@@ -120,6 +120,7 @@ class View
             "font.css",
             "owl.carousel.min.css",
             "owl.theme.default.min.css",
+            "pgwslideshow.min.css",
             "style.css",
         );
         $jsAssest = array(
@@ -127,6 +128,7 @@ class View
             "mui.min.js",
             "materialize.min.js",
             "owl.carousel.min.js",
+            "pgwslideshow.min.js",
             "site.js",
             "switchLanguage.js",
             "logout.js",
