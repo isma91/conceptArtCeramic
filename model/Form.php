@@ -12,14 +12,14 @@ class Form
     private $_message;
     private $_date;
 
-    public function add($type, $name, $email, $tel, $message)
+    public function add($name, $email, $tel, $message, $idProduct = 0)
     {
         $name = addslashes($name);
         $message = addslashes($message);
         $return = array("return" => "", "error" => "");
         $messageClass = new Message();
         $messages = $messageClass->getMessages();
-        if (!empty($type) && !empty($name) && !empty($email) && !empty($tel) && !empty($message)) {
+        if (!empty($name) && !empty($email) && !empty($tel) && !empty($message)) {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $return["return"] = false;
                 $return["error"] = $messages["error"]["emailFormat"];
@@ -33,11 +33,11 @@ class Form
             $bdd = new Bdd();
             $date = new \DateTime();
             $array = array(
-                "type" => $type,
                 "name" => $name,
                 "email" => $email,
                 "tel" => $tel,
                 "message" => $message,
+                "idProduct" => $idProduct,
                 "date" => $date->format("d-m-Y H:i:s"),
             );
             $add = $bdd->insert("form", $array);
