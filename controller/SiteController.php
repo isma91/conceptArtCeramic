@@ -90,7 +90,7 @@ class SiteController
                 $materials[$array["name"]]["categorySlug"] = $slug;
             }
             foreach ($materials as $material => $array) {
-                $product = $bdd->select("product", array("id", "img"), "idCategory LIKE '" . $idCategory . "%' AND idMaterial LIKE '%" . $array["id"] . "%'", array(), "LIMIT 1");
+                $product = $bdd->select("product", array("id", "img"), "idCategory LIKE '%" . $idCategory . "%' AND idMaterial LIKE '%" . $array["id"] . "%'", array(), "LIMIT 1");
                 if (!empty($product)) {
                     $img = explode("|", $product[0]["img"])[0];
                     $materials[$material]["product"] = array("id" => $product[0]["id"], "img" => $img);
@@ -124,7 +124,7 @@ class SiteController
         }
     }
 
-    public function product($id)
+    public function product($id, $error = null, $success = null, array $array = array())
     {
         $productClass = new Product($id);
         if (!is_null($productClass->getId())) {
@@ -132,14 +132,14 @@ class SiteController
             $funcDescription = "get" . ucfirst($_SESSION["lang"]) . "Description";
             $product = array();
             $product["id"] = $productClass->getId();
-            $product["name"] = $productClass->$funcName();
+            $product["name"] = stripslashes($productClass->$funcName());
             $product["color"] = $productClass->getColor();
             $product["material"] = $productClass->getMaterial();
             $product["size"] = $productClass->getSize();
             $product["usage"] = $productClass->getUsage();
-            $product["description"] = $productClass->$funcDescription();
+            $product["description"] = stripslashes($productClass->$funcDescription());
             $product["img"] = $productClass->getImg();
-            $this->checkMaintenance("site#product", array("product" => $product));
+            $this->checkMaintenance("site#product", array("product" => $product, "error" => $error, "success" => $success, "array" => $array));
         } else {
             $this->categories();
         }
@@ -170,6 +170,39 @@ class SiteController
             $view->set("error", $add["error"]);
         }
         $view->render();
+    }
+
+    public function sendDevis($id)
+    {
+        $error = null;
+        $success = null;
+        $form = new Form();
+        $message = new Message();
+        $messages = $message->getMessages();
+        $array = array();
+        foreach ($_POST as $field => $value) {
+            if (empty($value)) {
+                $array[$field] = $value;
+                break;
+            }
+        }
+        if (empty($array)) {
+            $add = $form->add($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
+            if ($add["error"] === "") {
+                $success = $messages["success"]["addForm"];
+            } else {
+                foreach ($_POST as $field => $value) {
+                    $array[$field] = $value;
+                }
+                $error = $add["error"];
+            }
+        } else {
+            foreach ($_POST as $field => $value) {
+                $array[$field] = $value;
+                $error = $messages["error"]["emptyField"];
+            }
+        }
+        $this->product($id, $error, $success, $array);
     }
 
     public function switchLanguage()
