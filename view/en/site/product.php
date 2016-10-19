@@ -13,26 +13,132 @@
 <body>
 <?php include("menu.php"); ?>
 <div class="container">
+    <div class="row failed">
+        <?php if ($this->error !== null) { echo $this->error; } ?>
+    </div>
+    <div class="row success">
+        <?php if ($this->success !== null) { echo $this->success; } ?>
+    </div>
     <div class="row">
         <?php
-        var_dump($this->product);
-        /*if(count($this->product) === 0) {
-            ?>
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <a class="productImg" href="/product/<?php echo $product["id"]; ?>" ><img class="responsive-img" src="../../media/img/product/<?php echo $product["id"] . "/" . $product["img"] ?>"></a>
-                        <span class="card-title"><?php echo $product["name"]; ?></span>
-                    </div>
-                    <div class="card-content">
-                        <p><span class="categoryName"><?php echo $product["name"]; ?></p>
-                    </div>
+        if(count($this->product) != 0) {
+        ?>
+        <div class="row mui-panel">
+            <div class="row">
+                <h1 class="title"><?php echo $this->product["name"]; ?></h1>
+            </div>
+            <div class="row">
+                <ul class="pgwSlideshow">
+                    <?php
+                    foreach ($this->product["img"] as $img) {
+                        ?>
+                        <li><img src="../../../media/img/product/<?php echo $this->product["id"] . "/" . $img ; ?>" alt="<?php echo $this->product["name"]; ?>"></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    <select id="color">
+                        <?php
+                        foreach ($this->product["color"] as $color) {
+                            ?>
+                            <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <label for="color">Availables Colors</label>
+                </div>
+                <div class="input-field col s4">
+                    <select id="material">
+                        <?php
+                        foreach ($this->product["material"] as $material) {
+                            ?>
+                            <option value="<?php echo $material; ?>"><?php echo $material; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <label for="material">Availables Materials</label>
+                </div>
+                <div class="input-field col s4">
+                    <select id="size">
+                        <?php
+                        foreach ($this->product["size"] as $size) {
+                            ?>
+                            <option value="<?php echo $size; ?>"><?php echo $size; ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <label for="size">Availables Sizes</label>
                 </div>
             </div>
-            <?php
-        }*/
-        ?>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a href="#description">Description</a></li>
+                        <li class="tab col s6"><a href="#usage">Utilisation</a></li>
+                        <li class="tab col s6"><a href="#devis">Demander un Devis</a></li>
+                    </ul>
+                </div>
+                <div id="description" class="col s12"><p class="mui-panel"><?php echo $this->product["description"]; ?></p></div>
+                <div id="usage" class="col s12">
+                    <div class="mui-panel">
+                        <ul class="collection">
+                            <?php
+                            foreach ($this->product["usage"] as $usage) {
+                                ?>
+                                <li class="collection-item center"><?php echo stripslashes($usage); ?></li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <div id="devis" class="col s12">
+                    <form action="/product/<?php echo $this->product["id"]; ?>" method="post" class="row">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">face</i>
+                                <input id="name" name="name" type="text" value="<?php echo $this->array["name"]; ?>">
+                                <label for="name">Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <input id="email" name="email" type="email" value="<?php echo $this->array["email"]; ?>">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">phone</i>
+                                <input id="phone" name="tel" type="tel" value="<?php echo $this->array["tel"]; ?>">
+                                <label for="phone">Phone Number</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">message</i>
+                                <textarea id="message" name="message" class="materialize-textarea"><?php echo $this->array["message"]; ?></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                        </div>
+                        <div class="row endButton">
+                            <button class="btn waves-effect" type="submit">Send <i class="material-icons right">send</i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+    <?php
+    }
+    ?>
 </div>
 </body>
 </html>
