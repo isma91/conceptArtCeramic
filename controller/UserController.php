@@ -320,6 +320,7 @@ class UserController
             $product["id"] = $productClass->getId();
             $product["frName"] = stripslashes($productClass->getFrName());
             $product["enName"] = stripslashes($productClass->getEnName());
+            $product["category"] = $productClass->getCategory();
             $product["material"] = $productClass->getMaterial();
             $product["size"] = $productClass->getSize();
             $product["usage"] = $productClass->getUsage();
