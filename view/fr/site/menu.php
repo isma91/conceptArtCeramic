@@ -1,24 +1,36 @@
 <!-- Dropdown content -->
-<ul id="menuDropdownGroundWall" class="dropdown-content">
-    <li><a href="/products/groundWall/ceramic">Céramique</a></li>
-    <li><a href="/products/groundWall/marble">Marbre</a></li>
-    <li><a href="/products/groundWall/granite">Granit</a></li>
-    <li><a href="/products/groundWall/stone">Pierre Naturel</a></li>
-</ul>
-<ul id="menuDropdownArchitecture" class="dropdown-content">
-    <li><a href="/products/architecture/ceramic">Céramique</a></li>
-    <li><a href="/products/architecture/marble">Marbre</a></li>
-    <li><a href="/products/architecture/granite">Granit</a></li>
-</ul>
-<ul id="menuDropdownDecoration" class="dropdown-content">
-    <li><a href="/products/decoration/ceramic">Céramique</a></li>
-    <li><a href="/products/decoration/marble">Marbre</a></li>
-</ul>
+<?php
+$bdd = new \model\Bdd();
+$field = $_SESSION["lang"] . "Name";
+$materials = $bdd->select("material", array("*"));
+$categories = $bdd->select("category", array("*"));
+?>
 <ul id="menuDropdownProduct" class="dropdown-content">
-    <li><a class="dropdown-button-submenu" href="/products/groundWall" data-activates="menuDropdownGroundWall">Sol & Mur</a></li>
-    <li><a class="dropdown-button-submenu" href="/products/architecture" data-activates="menuDropdownArchitecture">Architecture</a></li>
-    <li><a class="dropdown-button-submenu" href="/products/decoration" data-activates="menuDropdownDecoration">Décoration</a></li>
+    <?php
+    foreach ($categories as $category) {
+        $dataActivates = "menuDropdown" . ucfirst($category["slug"]);
+        ?>
+        <li><a class="dropdown-button-submenu" href="/products/<?php echo $category["slug"]; ?>" data-activates="<?php echo $dataActivates; ?>"><?php echo $category[$field]; ?></a></li>
+        <?php
+    }
+    ?>
 </ul>
+<?php
+foreach ($categories as $category) {
+    $dataActivates = "menuDropdown" . ucfirst($category["slug"]);
+    ?>
+    <ul id="<?php echo $dataActivates; ?>" class="dropdown-content">
+        <?php
+        foreach ($materials as $material) {
+            ?>
+            <li><a href="/products/<?php echo $category["slug"] . "/" . $material["slug"]; ?>"><?php echo $material[$field]; ?></a></li>
+            <?php
+        }
+        ?>
+    </ul>
+    <?php
+}
+?>
 <!-- Menu -->
 <nav class="navbar-fixed">
     <div class="nav-wrapper">
