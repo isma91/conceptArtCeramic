@@ -107,11 +107,10 @@ class Product
             $this->_id = $product["id"];
             $this->_img = explode("|", $product["img"]);
             $fieldName = $_SESSION["lang"] . "Name";
-            $thisFieldName = "_" . $_SESSION["lang"] . "Name";
-            $fieldDescription = $_SESSION["lang"] . "Description";
-            $thisFieldDescription = "_" . $_SESSION["lang"] . "Description";
-            $this->$thisFieldName = $product[$fieldName];
-            $this->$thisFieldDescription = $product[$fieldDescription];
+            $this->_frName = $product["frName"];
+            $this->_enName = $product["enName"];
+            $this->_frDescription = $product["frDescription"];
+            $this->_enDescription = $product["enDescription"];
             $array = array(
                 "categories" => "_category",
                 "materials" => "_material",
