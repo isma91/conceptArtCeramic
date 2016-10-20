@@ -5,4 +5,5 @@ $(document).ready(function () {
     } else {
         $("#maintenance").prop('checked', false);
     }
+    $("select").material_select();
 });
