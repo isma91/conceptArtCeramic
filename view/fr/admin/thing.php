@@ -50,10 +50,13 @@
                     <div class="card-panel grey lighten-5 z-depth-1">
                         <div class="row valign-wrapper">
                             <div class="col s2">
-                                <a href="/admin/update/product/<?php echo $product["id"]; ?>" ><img src="../../media/img/product/<?php echo $product["id"] . "/" . $img ?>" class="circle responsive-img"></a>
+                                <img src="../../media/img/product/<?php echo $product["id"] . "/" . $img ?>" class="circle responsive-img">
                             </div>
                             <div class="col s10">
                                 <span class="black-text"><?php echo $product[$field]; ?></span>
+                            </div>
+                            <div class="col right">
+                                <a class="btn waves-effect" href="/admin/update/product/<?php echo $product["id"]; ?>">Modifier</a>
                             </div>
                         </div>
                     </div>
