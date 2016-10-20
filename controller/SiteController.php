@@ -133,7 +133,6 @@ class SiteController
             $product = array();
             $product["id"] = $productClass->getId();
             $product["name"] = stripslashes($productClass->$funcName());
-            $product["color"] = $productClass->getColor();
             $product["material"] = $productClass->getMaterial();
             $product["size"] = $productClass->getSize();
             $product["usage"] = $productClass->getUsage();
