@@ -308,7 +308,7 @@ class UserController
                 "usage" => "getUsages"
             );
             foreach ($arrayField as $type => $func) {
-                $thing["product"][$type] = $site->$func();
+                $thing["thing"][$type] = $site->$func();
             }
             $thing["label"] = array(
                 "category" => array("fr" => "Catégorie", "en" => "Category"),
@@ -326,8 +326,10 @@ class UserController
             $product["frDescription"] = stripslashes($productClass->getFrDescription());
             $product["enDescription"] = stripslashes($productClass->getEnDescription());
             $product["img"] = $productClass->getImg();
-            var_dump($thing);
-            var_dump($product);
+            $thing["product"] = $product;
+            $array = array("fr" => "Produit", "en" => "Product");
+            $thing["title"] = $array[$_SESSION["lang"]];
+            $thing["slug"] = "product";
         } else {
             $site = new SiteInfo();
             $arrayField = array(
@@ -345,8 +347,6 @@ class UserController
                 "enSize" => "Size",
                 "frUsage" => "Utilisation",
                 "enUsage" => "Usage",
-                "frProduct" => "Produit",
-                "enProduct" => "Product",
                 "frInfo" => "Information du Site",
                 "enInfo" => "Information about the Site",
             );
@@ -362,11 +362,11 @@ class UserController
                     }
                 }
             }
+            $thing["title"] = $array[$_SESSION["lang"] . ucfirst($type)];
             $thing["slug"] = $type;
             $thing["id"] = $id;
-            $thing["title"] = $array[$_SESSION["lang"] . ucfirst($type)];
-            $this->redirectIfNotLoged("admin#update", array("error" => $error, "success" => $success, "thing" => $thing));
         }
+        $this->redirectIfNotLoged("admin#update", array("error" => $error, "success" => $success, "thing" => $thing));
     }
 
     public function updateThing($type, $id)
@@ -399,6 +399,7 @@ class UserController
                 $this->displayThing("info", 0, $messages["error"]["emptyField"]);
             }
         } elseif ($type === "product") {
+            var_dump($_POST);
         } else {
             $updateTypeName = "update" . ucfirst($type);
             $duplicateTypeName = "duplicate" . ucfirst($type);
