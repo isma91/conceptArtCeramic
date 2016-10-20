@@ -14,7 +14,7 @@
 <?php include("adminMenu.php"); ?>
 <div class="container">
     <div class="row mui-panel" id="the_menu">
-        <h2 class="title">Here are all <?php echo $this->thing["title"]; ?> added</h2>
+        <h2 class="title">Voici les <?php echo $this->thing["title"]; ?> enregistrer</h2>
     </div>
     <div class="row failed">
         <?php if ($this->error !== null) { echo $this->error; } ?>
@@ -24,19 +24,49 @@
     </div>
     <ul class="collection">
         <?php
-        if (count($this->thing["thing"]) === 0) {
-            ?>
-            <li class="collection-item">No <?php echo $this->thing["title"]; ?> added yet</li>
-            <?php
-        } else {
-            foreach ($this->thing["thing"] as $id => $name) {
+        if ($this->thing["slug"] !== "product") {
+            if (count($this->thing["thing"]) == 0) {
                 ?>
-                <li class="collection-item center"><?php echo $name; ?><a class="btn waves-effect right" href="/admin/update/<?php echo $this->thing["slug"]; ?>/<?php echo $id; ?>">Update</a></li>
+                <li class="collection-item">No <?php echo $this->thing["title"]; ?> added yet</li>
                 <?php
+            } else {
+                foreach ($this->thing["thing"] as $id => $name) {
+                    ?>
+                    <li class="collection-item center"><?php echo $name; ?><a class="btn waves-effect right" href="/admin/update/<?php echo $this->thing["slug"]; ?>/<?php echo $id; ?>">Update</a></li>
+                    <?php
+                }
             }
         }
         ?>
     </ul>
+    <?php
+    if ($this->thing["slug"] === "product") {
+        if (count($this->thing["thing"]) != 0) {
+            foreach ($this->thing["thing"] as $product) {
+                $img = explode("|", $product["img"])[0];
+                $field = $_SESSION["lang"] . "Name";
+                ?>
+                <div class="col s12 m8 l6 ">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+                                <a href="/admin/update/product/<?php echo $product["id"]; ?>" ><img src="../../media/img/product/<?php echo $product["id"] . "/" . $img ?>" class="circle responsive-img"></a>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text"><?php echo $product[$field]; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            ?>
+            <p class="title">No Product yet</p>
+            <?php
+        }
+    }
+    ?>
 </div>
 </body>
 </html>

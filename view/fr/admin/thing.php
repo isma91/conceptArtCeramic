@@ -23,9 +23,8 @@
         <?php if ($this->success !== null) { echo $this->success; } ?>
     </div>
     <ul class="collection">
-        <?php var_dump($this->thing);
-        if ($this->thing["slug"] === "product") {
-        } else {
+        <?php
+        if ($this->thing["slug"] !== "product") {
             if (count($this->thing["thing"]) == 0) {
                 ?>
                 <li class="collection-item">Pas de <?php echo $this->thing["title"]; ?> enregistrer</li>
@@ -40,6 +39,34 @@
         }
         ?>
     </ul>
+    <?php
+    if ($this->thing["slug"] === "product") {
+        if (count($this->thing["thing"]) != 0) {
+            foreach ($this->thing["thing"] as $product) {
+                $img = explode("|", $product["img"])[0];
+                $field = $_SESSION["lang"] . "Name";
+                ?>
+                <div class="col s12 m8 l6 ">
+                    <div class="card-panel grey lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+                                <a href="/admin/update/product/<?php echo $product["id"]; ?>" ><img src="../../media/img/product/<?php echo $product["id"] . "/" . $img ?>" class="circle responsive-img"></a>
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text"><?php echo $product[$field]; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            ?>
+            <p class="title">Pas de Produit</p>
+            <?php
+        }
+    }
+    ?>
 </div>
 </body>
 </html>
