@@ -262,7 +262,7 @@ class UserController
         } elseif ($type === "product") {
             $bdd = new Bdd();
             $field = $_SESSION["lang"] . "Name";
-            $productsArray = $bdd->select("product", array($field, "img"));
+            $productsArray = $bdd->select("product", array("id", $field, "img"));
             $thing["thing"] = $productsArray;
         } else {
             $site = new SiteInfo();
@@ -299,6 +299,35 @@ class UserController
     public function displayThing($type, $id, $error = null, $success = null)
     {
         if ($type === "product") {
+            $site = new SiteInfo();
+            $productClass = new Product($id);
+            $arrayField = array(
+                "category" => "getCategories",
+                "material" => "getMaterials",
+                "size" => "getSizes",
+                "usage" => "getUsages"
+            );
+            foreach ($arrayField as $type => $func) {
+                $thing["product"][$type] = $site->$func();
+            }
+            $thing["label"] = array(
+                "category" => array("fr" => "Catégorie", "en" => "Category"),
+                "material" => array("fr" => "Materiau", "en" => "Material"),
+                "size" => array("fr" => "Taille", "en" => "Size"),
+                "usage" => array("fr" => "Utilisation", "en" => "Usage")
+            );
+            $product = array();
+            $product["id"] = $productClass->getId();
+            $product["frName"] = stripslashes($productClass->getFrName());
+            $product["enName"] = stripslashes($productClass->getEnName());
+            $product["material"] = $productClass->getMaterial();
+            $product["size"] = $productClass->getSize();
+            $product["usage"] = $productClass->getUsage();
+            $product["frDescription"] = stripslashes($productClass->getFrDescription());
+            $product["enDescription"] = stripslashes($productClass->getEnDescription());
+            $product["img"] = $productClass->getImg();
+            var_dump($thing);
+            var_dump($product);
         } else {
             $site = new SiteInfo();
             $arrayField = array(
