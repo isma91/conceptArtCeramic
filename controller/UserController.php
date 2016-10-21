@@ -107,7 +107,7 @@ class UserController
         $this->redirectIfNotLoged("admin#register", array(), false);
     }
 
-    public function adminPanel()
+    public function adminPanel($error = null, $success = null)
     {
         $bdd = new Bdd();
         $field = $_SESSION["lang"] . "Name";
@@ -118,7 +118,7 @@ class UserController
         );
         $formsNull = $bdd->select("form", $arrayNull, "idProduct = 0");
         $formsNotNull = $bdd->select("form", $arrayNotNull, "form.idProduct != 0", $innerJoin);
-        $this->redirectIfNotLoged("admin#panel", array("formsNull" => $formsNull, "formsNotNull" => $formsNotNull));
+        $this->redirectIfNotLoged("admin#panel", array("formsNull" => $formsNull, "formsNotNull" => $formsNotNull, "error" => $error, "success" => $success));
     }
 
     public function thing($type, array $arrayValue = array(), $error = null)
@@ -203,16 +203,7 @@ class UserController
             if ($add["error"] !== "") {
                 $this->thing("product", $arrayValue, $add["error"]);
             } else {
-                $view = new View("admin#panel");
-                $userClass = new User();
-                $user = $userClass->getUser();
-                if ($user !== false) {
-                    foreach ($user as $name => $value) {
-                        $view->set($name, $value);
-                    }
-                }
-                $view->set("success", sprintf($messages["success"]["addProduct"], $array[$_SESSION["lang"]]));
-                $view->render();
+                $this->adminPanel(null, sprintf($messages["success"]["addProduct"], $array[$_SESSION["lang"]]));
             }
         } else {
             $frKey = "fr" . ucfirst($type);
@@ -400,7 +391,22 @@ class UserController
                 $this->displayThing("info", 0, $messages["error"]["emptyField"]);
             }
         } elseif ($type === "product") {
-            var_dump($_POST);
+            $product = new Product($id);
+            $oldImg = array();
+            foreach ($_POST as $name => $arrayValue) {
+                if (substr($name, 0, 7) === "oldImg_") {
+                    $oldImg[] = substr(str_replace("/", ".", $name), 7);
+                }
+            }
+            $update = $product->update($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $_POST["frDescription"], $_POST["enDescription"], $oldImg, $_FILES['newImg']);
+            $message = new Message();
+            $messages = $message->getMessages();
+            if ($update["error"] !== "") {
+                $this->displayThing("product", $id, $update["error"]);
+            } else {
+                $field = $_SESSION["lang"] . "Name";
+                $this->adminPanel(null, sprintf($messages["success"]["updateProduct"], $_POST[$field]));
+            }
         } else {
             $updateTypeName = "update" . ucfirst($type);
             $duplicateTypeName = "duplicate" . ucfirst($type);
