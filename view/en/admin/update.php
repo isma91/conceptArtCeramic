@@ -57,25 +57,42 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
-                    <input id="frName" type="text" name="frName" value="<?php echo $this->thing["value"]["frName"]; ?>">
+                    <input id="frName" type="text" name="frName" value="<?php echo $this->thing["product"]["frName"]; ?>">
                     <label for="frName">Name in French</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
-                    <input id="enName" type="text" name="enName" value="<?php echo $this->thing["value"]["enName"]; ?>">
+                    <input id="enName" type="text" name="enName" value="<?php echo $this->thing["product"]["enName"]; ?>">
                     <label for="enName">Name in English</label>
                 </div>
             </div>
             <?php
-            foreach ($this->thing["product"] as $type => $array) {
+            $selected = array();
+            $notSelected = array();
+            foreach ($this->thing["thing"] as $type => $array) {
+                foreach ($array as $id => $name) {
+                    foreach ($this->thing["product"][$type] as $product) {
+                        if ($name === $product) {
+                            $selected[$type][$id] = $name;
+                        }
+                    }
+                    $notSelected[$type] = array_diff($array, $selected[$type]);
+                }
+            }
+            foreach ($selected as $type => $array) {
                 ?>
                 <div class="row">
                     <div class="input-field col s12">
                         <select name="<?php echo $type; ?>[]" multiple>
                             <?php
                             foreach ($array as $id => $name) {
+                                ?>
+                                <option value="<?php echo $id; ?>" selected><?php echo $name; ?></option>
+                                <?php
+                            }
+                            foreach ($notSelected[$type] as $id => $name) {
                                 ?>
                                 <option value="<?php echo $id; ?>"><?php echo $name; ?></option>
                                 <?php
@@ -89,26 +106,43 @@
             }
             ?>
             <div class="row">
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>Picture</span>
-                        <input type="file" name="img[]" multiple>
+                <label>Add Picture ?</label>
+                <div class="switch">
+                    <label>
+                        Off
+                        <input type="checkbox" name="addImg" id="addImg">
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
+            </div>
+            <div id="imgField"></div>
+            <div class="row">
+                <p class="title">Select the pictures you want to keep</p>
+                <?php
+                foreach($this->thing["product"]['img'] as $img) {
+                    ?>
+                    <div class="left">
+                        <p>
+                            <img src="../../../media/img/product/<?php echo $this->thing["product"]["id"] . "/" . $img; ?>" id="<?php echo "oldImg_" . $img; ?>" class="oldImg" style="width: 50%" />
+                            <input type="checkbox" class="filled-in" id="<?php echo "oldImg_" . $img; ?>" name="<?php echo "oldImg_" . $img; ?>" />
+                            <label for="<?php echo "oldImg_" . $img; ?>"><?php echo $img; ?></label>
+                        </p>
                     </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="frDescription" name="frDescription" class="materialize-textarea"><?php echo $this->thing["product"]["frDescription"]; ?></textarea>
+                    <label for="frDescription">Description en Français</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="frDescription" name="frDescription" class="materialize-textarea"><?php echo $this->thing["value"]["frDescription"]; ?></textarea>
-                    <label for="frDescription">Description in French</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="enDescription" name="enDescription" class="materialize-textarea"><?php echo $this->thing["value"]["enDescription"]; ?></textarea>
-                    <label for="enDescription">Description in English</label>
+                    <textarea id="enDescription" name="enDescription" class="materialize-textarea"><?php echo $this->thing["product"]["enDescription"]; ?></textarea>
+                    <label for="enDescription">Description en Anglais</label>
                 </div>
             </div>
             <?php
