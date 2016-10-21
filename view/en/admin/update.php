@@ -125,7 +125,7 @@
                     <div class="left">
                         <p>
                             <img src="../../../media/img/product/<?php echo $this->thing["product"]["id"] . "/" . $img; ?>" id="<?php echo "oldImg_" . $img; ?>" class="oldImg" style="width: 50%" />
-                            <input type="checkbox" class="filled-in" id="<?php echo "oldImg_" . $img; ?>" name="<?php echo "oldImg_" . $img; ?>" />
+                            <input type="checkbox" class="filled-in" id="<?php echo "oldImg_" . $img; ?>" name="<?php echo "oldImg_" . $img; ?>" checked/>
                             <label for="<?php echo "oldImg_" . $img; ?>"><?php echo $img; ?></label>
                         </p>
                     </div>
