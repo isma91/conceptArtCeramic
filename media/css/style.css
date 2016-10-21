@@ -37,7 +37,8 @@ html,body {
 .endButton {
 	text-align: center;
 }
-.language {
+.language,
+.oldImg {
 	cursor: pointer;
 }
 .language:hover {
