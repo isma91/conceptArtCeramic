@@ -226,4 +226,111 @@ class Product
             return $return;
         }
     }
+
+    public function update($frName, $enName, array $category, array $material, array $size, array $usage, $frDescription, $enDescription, array $oldImg, array $newImg) {
+        $frName = addslashes($frName);
+        $enName = addslashes($enName);
+        $frDescription = addslashes($frDescription);
+        $enDescription = addslashes($enDescription);
+        $names = array("fr" => $frName, "en" => $enName);
+        $return = array("return" => "", "error" => "");
+        $message = new Message();
+        $messages = $message->getMessages();
+        $oldImgs = "";
+        $newImgs = "";
+        if (!empty($frName) && !empty($enName) && !empty($category)  && !empty($material) && !empty($size) && !empty($usage) && !empty($frDescription) && !empty($enDescription)) {
+            $bdd = new Bdd();
+            if (!empty($newImg)) {
+                foreach ($newImg["error"] as $num => $error) {
+                    if ($error !== 0) {
+                        $message["return"] = false;
+                        return $message["error"] = sprintf($messages["error"]["uploadImg"], $newImg["name"][$num]);
+                        break;
+                    }
+                    $newImgs = $newImgs . $newImg["name"][$num] . "|";
+                }
+            }
+            if (!empty($oldImg)) {
+                foreach ($oldImg as $img) {
+                    $oldImgs = $oldImgs . $img . "|";
+                }
+            }
+            $categories = "";
+            $materials = "";
+            $sizes = "";
+            $usages = "";
+            foreach ($category as $value) {
+                $categories = $categories . $value . "|";
+            }
+            foreach ($material as $value) {
+                $materials = $materials . $value . "|";
+            }
+            foreach ($size as $value) {
+                $sizes = $sizes . $value . "|";
+            }
+            foreach ($usage as $value) {
+                $usages = $usages . $value . "|";
+            }
+            $categories = rtrim($categories, "|");
+            $materials = rtrim($materials, "|");
+            $sizes = rtrim($sizes, "|");
+            $usages = rtrim($usages, "|");
+            $arrayField = array(
+                "frName" => $frName,
+                "enName" => $enName,
+                "idCategory" => $categories,
+                "idMaterial" => $materials,
+                "idSize" => $sizes,
+                "idUsage" => $usages,
+                "frDescription" => $frDescription,
+                "enDescription" => $enDescription,
+                "img" => rtrim($oldImgs, "|")
+            );
+            $id = $this->_id;
+            $imgs = "";
+            $imgs = $oldImgs . $newImgs;
+            if (!empty($oldImgs) && empty($newImgs)) {
+                $imgs = rtrim($oldImgs, '|');
+            }
+            if (empty($oldImgs) && !empty($newImgs)) {
+                $imgs = rtrim($newImgs, '|');
+            }
+            if (!empty($oldImgs) && !empty($newImgs)) {
+                $imgs = $oldImgs . rtrim($newImgs, '|');
+            }
+            $updateProduct = $bdd->update('product', $arrayField, "id = $id");
+            if ($updateProduct === true) {
+                $productPath = rtrim(__DIR__, "/") . "/../media/img/product/" . $id . "/";
+                foreach ($newImg["tmp_name"] as $num => $name) {
+                    if(!rename($newImg["tmp_name"][$num], $productPath . $newImg["name"][$num])) {
+                        $return["error"] = sprintf($messages["error"]["uploadImg"], $newImg["name"][$num]);
+                        $return["return"] = false;
+                        return $return;
+                        break;
+                    }
+                }
+                foreach ($newImg["name"] as $name) {
+                    chmod($productPath . $name, 0777);
+                }
+                $update = $bdd->update("product", array("img" => $imgs), "id = " . $id);
+                if ($update) {
+                    $return["return"] = true;
+                    $return["error"] = "";
+                    return $return;
+                } else {
+                    $return["return"] = false;
+                    $return["error"] = sprintf($messages["error"]["updateProduct"], $names[$_SESSION["lang"]]);
+                    return $return;
+                }
+            } else {
+                $return["retun"] = false;
+                $return["error"] = sprintf($messages["error"]["updateProduct"], $names[$_SESSION["lang"]]);
+                return $return;
+            }
+        } else {
+            $return["retun"] = false;
+            $return["error"] = $messages["error"]["emptyField"];
+            return $return;
+        }
+    }
 }
