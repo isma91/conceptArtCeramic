@@ -121,11 +121,13 @@
                 <p class="title">Séléctionner les images que vous voulez garder</p>
                 <?php
                 foreach($this->thing["product"]['img'] as $img) {
+                    $pathinfo = pathinfo("../../../media/img/product/" . $this->thing["product"]["id"] . "/" . $img);
+                    $picture = $pathinfo["filename"] . "/" . $pathinfo["extension"];
                     ?>
                     <div class="left">
                         <p>
                             <img src="../../../media/img/product/<?php echo $this->thing["product"]["id"] . "/" . $img; ?>" style="width: 50%" class="oldImg" checkbox="<?php echo "oldImg_" . $img; ?>" />
-                            <input type="checkbox" class="filled-in" id="<?php echo "oldImg_" . $img; ?>" name="<?php echo "oldImg_" . $img; ?>"  checked/>
+                            <input type="checkbox" class="filled-in" id="<?php echo "oldImg_" . $img; ?>" name="<?php echo "oldImg_" . $picture; ?>"  checked/>
                             <label for="<?php echo "oldImg_" . $img; ?>"><?php echo $img; ?></label>
                         </p>
                     </div>
