@@ -192,12 +192,9 @@ class UserController
             $arrayValue["enDescription"] = $_POST["enDescription"];
             $arrayValue["frName"] = $_POST["frName"];
             $arrayValue["enName"] = $_POST["enName"];
-            foreach ($_POST as $value) {
-                if (empty($value) || empty($_FILES["img"]["name"][0])) {
-                    $this->thing("product", $arrayValue, $messages["error"]["emptyField"]);
-                    return;
-                    break;
-                }
+            if (empty($_POST["frName"]) ||  empty($_POST["enName"]) || empty($_POST["category"]) || empty($_POST["material"]) || empty($_POST["size"]) || empty($_POST["usage"]) || empty($_POST["frDescription"]) || empty($_POST["enDescription"]) || empty($_FILES["img"])) {
+                $this->thing("product", $arrayValue, $messages["error"]["emptyField"]);
+                return;
             }
             $add = $product->add($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $_POST["frDescription"], $_POST["enDescription"], $_FILES["img"]);
             if ($add["error"] !== "") {
