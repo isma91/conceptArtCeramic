@@ -139,7 +139,6 @@ class SiteInfo
         }
         $arrayField = array(
             "category" => "_categories",
-            "color" => "_colors",
             "material" => "_materials",
             "size" => "_sizes",
             "usage" => "_usages"
@@ -163,7 +162,6 @@ class SiteInfo
         $duplicate = false;
         $arrayField = array(
             "category" => "_categories",
-            "color" => "_colors",
             "material" => "_materials",
             "size" => "_sizes",
             "usage" => "_usages"
