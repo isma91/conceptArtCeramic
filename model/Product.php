@@ -129,6 +129,30 @@ class Product
                     $this->$field[] = $select[0][$arrayField];
                 }
             }
+            $selectCategories = $bdd->select("category", array("*"));
+            if (!empty($selectCategories)) {
+                foreach ($selectCategories as $array) {
+                    $this->_category[] = stripslashes($array[$_SESSION["lang"] . "Name"]);
+                }
+            }
+            $selectMaterials = $bdd->select("material", array("*"));
+            if (!empty($selectMaterials)) {
+                foreach ($selectMaterials as $array) {
+                    $this->_material[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
+                }
+            }
+            $selectSizes = $bdd->select("size", array("*"));
+            if (!empty($selectSizes)) {
+                foreach ($selectSizes as $array) {
+                    $this->_size[$array["id"]] = stripslashes($array["name"]);
+                }
+            }
+            $selectUsages = $bdd->select("usage", array("*"));
+            if (!empty($selectUsages)) {
+                foreach ($selectUsages as $array) {
+                    $this->_usage[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
+                }
+            }
         }
     }
 
