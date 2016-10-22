@@ -40,18 +40,6 @@
             </div>
             <div class="row">
                 <div class="input-field col s4">
-                    <select id="color">
-                        <?php
-                        foreach ($this->product["color"] as $color) {
-                            ?>
-                            <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                    <label for="color">Couleurs Disponible</label>
-                </div>
-                <div class="input-field col s4">
                     <select id="material">
                         <?php
                         foreach ($this->product["material"] as $material) {
