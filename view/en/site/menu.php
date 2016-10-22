@@ -54,3 +54,8 @@ foreach ($categories as $category) {
         </ul>
     </div>
 </nav>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+    });
+</script>
