@@ -111,47 +111,17 @@ class Product
             $this->_enName = $product["enName"];
             $this->_frDescription = $product["frDescription"];
             $this->_enDescription = $product["enDescription"];
-            $array = array(
-                "categories" => "_category",
-                "materials" => "_material",
-                "sizes" => "_size",
-                "usages" => "_usage",
-            );
-            foreach ($array as $var => $field) {
-                foreach ($$var as $id) {
-                    if ($field === "_size") {
-                        $arrayField = "name";
-                        $select = $bdd->select(substr($field, 1), array("name"), "id = $id");
-                    } else {
-                        $arrayField = $fieldName;
-                        $select = $bdd->select(substr($field, 1), array($fieldName), "id = $id");
-                    }
-                    $this->$field[] = $select[0][$arrayField];
-                }
+            foreach ($categories as $id) {
+                $this->_category[] = $bdd->select("category", array($fieldName), "id = $id")[0][$fieldName];
             }
-            $selectCategories = $bdd->select("category", array("*"));
-            if (!empty($selectCategories)) {
-                foreach ($selectCategories as $array) {
-                    $this->_category[] = stripslashes($array[$_SESSION["lang"] . "Name"]);
-                }
+            foreach ($materials as $id) {
+                $this->_material[] = $bdd->select("material", array($fieldName), "id = $id")[0][$fieldName];
             }
-            $selectMaterials = $bdd->select("material", array("*"));
-            if (!empty($selectMaterials)) {
-                foreach ($selectMaterials as $array) {
-                    $this->_material[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
-                }
+            foreach ($sizes as $id) {
+                $this->_size[] = $bdd->select("size", array("name"), "id = $id")[0]["name"];
             }
-            $selectSizes = $bdd->select("size", array("*"));
-            if (!empty($selectSizes)) {
-                foreach ($selectSizes as $array) {
-                    $this->_size[$array["id"]] = stripslashes($array["name"]);
-                }
-            }
-            $selectUsages = $bdd->select("usage", array("*"));
-            if (!empty($selectUsages)) {
-                foreach ($selectUsages as $array) {
-                    $this->_usage[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
-                }
+            foreach ($usages as $id) {
+                $this->_usage[] = $bdd->select("usage", array($fieldName), "id = $id")[0][$fieldName];
             }
         }
     }
