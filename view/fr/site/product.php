@@ -39,7 +39,7 @@
                 </ul>
             </div>
             <div class="row">
-                <div class="input-field col s4">
+                <div class="input-field col s6">
                     <select id="material">
                         <?php
                         foreach ($this->product["material"] as $material) {
@@ -51,7 +51,7 @@
                     </select>
                     <label for="material">Matériaux Disponible</label>
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s6">
                     <select id="size">
                         <?php
                         foreach ($this->product["size"] as $size) {
