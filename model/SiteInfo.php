@@ -149,16 +149,16 @@ class SiteInfo
                 $this->_materials[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
             }
         }
-        $selectSizes = $bdd->select("sizes", array("*"));
+        $selectSizes = $bdd->select("size", array("*"));
         if (!empty($selectSizes)) {
             foreach ($selectSizes as $array) {
-                $this->_categories[$array["id"]] = stripslashes($array["name"]);
+                $this->_sizes[$array["id"]] = stripslashes($array["name"]);
             }
         }
         $selectUsages = $bdd->select("usage", array("*"));
         if (!empty($selectUsages)) {
             foreach ($selectUsages as $array) {
-                $this->_materials[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
+                $this->_usages[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
             }
         }
     }
