@@ -137,22 +137,28 @@ class SiteInfo
                 $this->$field = $array[$lan];
             }
         }
-        $arrayField = array(
-            "category" => "_categories",
-            "material" => "_materials",
-            "size" => "_sizes",
-            "usage" => "_usages"
-        );
-        foreach ($arrayField as $tableName => $propertyName) {
-            $select = $bdd->select($tableName, array("*"));
-            if (!empty($select)) {
-                foreach ($select as $array) {
-                    if ($tableName !== "size") {
-                        $this->$propertyName[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
-                    } else {
-                        $this->$propertyName[$array["id"]] = stripslashes($array["name"]);
-                    }
-                }
+        $selectCategories = $bdd->select("category", array("*"));
+        if (!empty($selectCategories)) {
+            foreach ($selectCategories as $array) {
+                $this->_categories[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
+            }
+        }
+        $selectMaterials = $bdd->select("material", array("*"));
+        if (!empty($selectMaterials)) {
+            foreach ($selectMaterials as $array) {
+                $this->_materials[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
+            }
+        }
+        $selectSizes = $bdd->select("sizes", array("*"));
+        if (!empty($selectSizes)) {
+            foreach ($selectSizes as $array) {
+                $this->_categories[$array["id"]] = stripslashes($array["name"]);
+            }
+        }
+        $selectUsages = $bdd->select("usage", array("*"));
+        if (!empty($selectUsages)) {
+            foreach ($selectUsages as $array) {
+                $this->_materials[$array["id"]] = stripslashes($array[$_SESSION["lang"] . "Name"]);
             }
         }
     }
