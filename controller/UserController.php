@@ -310,8 +310,6 @@ class UserController
             $product["material"] = $productClass->getMaterial();
             $product["size"] = $productClass->getSize();
             $product["usage"] = $productClass->getUsage();
-            $product["frDescription"] = stripslashes($productClass->getFrDescription());
-            $product["enDescription"] = stripslashes($productClass->getEnDescription());
             $product["img"] = $productClass->getImg();
             $thing["product"] = $product;
             $array = array("fr" => "Produit", "en" => "Product");
@@ -393,7 +391,7 @@ class UserController
                     $oldImg[] = substr(str_replace("/", ".", $name), 7);
                 }
             }
-            $update = $product->update($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $_POST["frDescription"], $_POST["enDescription"], $oldImg, $_FILES['newImg']);
+            $update = $product->update($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $oldImg, $_FILES['newImg']);
             $message = new Message();
             $messages = $message->getMessages();
             if ($update["error"] !== "") {
