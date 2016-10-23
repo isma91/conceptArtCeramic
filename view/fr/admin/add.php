@@ -85,18 +85,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="frDescription" name="frDescription" class="materialize-textarea"><?php echo $this->thing["value"]["frDescription"]; ?></textarea>
-                    <label for="frDescription">Description en Français</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="enDescription" name="enDescription" class="materialize-textarea"><?php echo $this->thing["value"]["enDescription"]; ?></textarea>
-                    <label for="enDescription">Description en Anglais</label>
-                </div>
-            </div>
             <?php
         } else {
             foreach ($this->thing["field"] as $lang => $fieldLang) {
