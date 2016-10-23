@@ -136,7 +136,6 @@ class SiteController
             $product["material"] = $productClass->getMaterial();
             $product["size"] = $productClass->getSize();
             $product["usage"] = $productClass->getUsage();
-            $product["description"] = stripslashes($productClass->$funcDescription());
             $product["img"] = $productClass->getImg();
             $this->checkMaintenance("site#product", array("product" => $product, "error" => $error, "success" => $success, "array" => $array));
         } else {

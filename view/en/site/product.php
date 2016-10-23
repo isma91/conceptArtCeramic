@@ -67,12 +67,10 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="tabs">
-                        <li class="tab col s6"><a href="#description">Description</a></li>
                         <li class="tab col s6"><a href="#usage">Utilisation</a></li>
                         <li class="tab col s6"><a href="#devis">Demander un Devis</a></li>
                     </ul>
                 </div>
-                <div id="description" class="col s12"><p class="mui-panel"><?php echo $this->product["description"]; ?></p></div>
                 <div id="usage" class="col s12">
                     <div class="mui-panel">
                         <ul class="collection">

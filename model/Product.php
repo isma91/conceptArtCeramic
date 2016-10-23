@@ -11,8 +11,6 @@ class Product
     private $_material = array();
     private $_size = array();
     private $_usage = array();
-    private $_frDescription = "";
-    private $_enDescription = "";
     private $_img = array();
 
     /**
@@ -72,22 +70,6 @@ class Product
     }
 
     /**
-     * @return string
-     */
-    public function getFrDescription()
-    {
-        return $this->_frDescription;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEnDescription()
-    {
-        return $this->_enDescription;
-    }
-
-    /**
      * @return array
      */
     public function getImg()
@@ -109,8 +91,6 @@ class Product
             $fieldName = $_SESSION["lang"] . "Name";
             $this->_frName = $product["frName"];
             $this->_enName = $product["enName"];
-            $this->_frDescription = $product["frDescription"];
-            $this->_enDescription = $product["enDescription"];
             foreach ($categories as $id) {
                 $this->_category[] = $bdd->select("category", array($fieldName), "id = $id")[0][$fieldName];
             }
@@ -126,18 +106,16 @@ class Product
         }
     }
 
-    public function add($frName, $enName, array $category, array $material, array $size, array $usage, $frDescription, $enDescription, array $img)
+    public function add($frName, $enName, array $category, array $material, array $size, array $usage, array $img)
     {
         $frName = addslashes($frName);
         $enName = addslashes($enName);
-        $frDescription = addslashes($frDescription);
-        $enDescription = addslashes($enDescription);
         $names = array("fr" => $frName, "en" => $enName);
         $return = array("return" => "", "error" => "");
         $message = new Message();
         $messages = $message->getMessages();
         $imgs = "";
-        if (!empty($frName) && !empty($enName) && !empty($category)  && !empty($material) && !empty($size) && !empty($usage) && !empty($frDescription) && !empty($enDescription ) && !empty($img)) {
+        if (!empty($frName) && !empty($enName) && !empty($category)  && !empty($material) && !empty($size) && !empty($usage) && !empty($img)) {
             $bdd = new Bdd();
             foreach ($img["error"] as $num => $error) {
                 if ($error !== 0) {
@@ -174,8 +152,6 @@ class Product
                 "idMaterial" => $materials,
                 "idSize" => $sizes,
                 "idUsage" => $usages,
-                "frDescription" => $frDescription,
-                "enDescription" => $enDescription,
                 "img" => ""
             );
             $add = $bdd->insert("product", $arrayField, true);
@@ -221,18 +197,16 @@ class Product
         }
     }
 
-    public function update($frName, $enName, array $category, array $material, array $size, array $usage, $frDescription, $enDescription, array $oldImg, array $newImg) {
+    public function update($frName, $enName, array $category, array $material, array $size, array $usage, array $oldImg, array $newImg) {
         $frName = addslashes($frName);
         $enName = addslashes($enName);
-        $frDescription = addslashes($frDescription);
-        $enDescription = addslashes($enDescription);
         $names = array("fr" => $frName, "en" => $enName);
         $return = array("return" => "", "error" => "");
         $message = new Message();
         $messages = $message->getMessages();
         $oldImgs = "";
         $newImgs = "";
-        if (!empty($frName) && !empty($enName) && !empty($category)  && !empty($material) && !empty($size) && !empty($usage) && !empty($frDescription) && !empty($enDescription)) {
+        if (!empty($frName) && !empty($enName) && !empty($category)  && !empty($material) && !empty($size) && !empty($usage)) {
             $bdd = new Bdd();
             if (!empty($newImg)) {
                 foreach ($newImg["error"] as $num => $error) {
@@ -276,8 +250,6 @@ class Product
                 "idMaterial" => $materials,
                 "idSize" => $sizes,
                 "idUsage" => $usages,
-                "frDescription" => $frDescription,
-                "enDescription" => $enDescription,
                 "img" => rtrim($oldImgs, "|")
             );
             $id = $this->_id;

@@ -188,15 +188,13 @@ class UserController
             $messages = $message->getMessages();
             $array = array("fr" => $_POST["frName"], "en" => $_POST["enName"]);
             $arrayValue = array();
-            $arrayValue["frDescription"] = $_POST["frDescription"];
-            $arrayValue["enDescription"] = $_POST["enDescription"];
             $arrayValue["frName"] = $_POST["frName"];
             $arrayValue["enName"] = $_POST["enName"];
-            if (empty($_POST["frName"]) ||  empty($_POST["enName"]) || empty($_POST["category"]) || empty($_POST["material"]) || empty($_POST["size"]) || empty($_POST["usage"]) || empty($_POST["frDescription"]) || empty($_POST["enDescription"]) || empty($_FILES["img"])) {
+            if (empty($_POST["frName"]) ||  empty($_POST["enName"]) || empty($_POST["category"]) || empty($_POST["material"]) || empty($_POST["size"]) || empty($_POST["usage"]) || empty($_FILES["img"])) {
                 $this->thing("product", $arrayValue, $messages["error"]["emptyField"]);
                 return;
             }
-            $add = $product->add($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $_POST["frDescription"], $_POST["enDescription"], $_FILES["img"]);
+            $add = $product->add($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $_FILES["img"]);
             if ($add["error"] !== "") {
                 $this->thing("product", $arrayValue, $add["error"]);
             } else {
