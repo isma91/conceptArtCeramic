@@ -22,7 +22,7 @@
     <div class="row success">
         <?php if ($this->success !== null) { echo $this->success; } ?>
     </div>
-    <form action="/admin/update/<?php echo $this->thing["slug"] . "/" . $this->thing["product"]["id"]; ?>" method="post" class="row" enctype="multipart/form-data">
+    <form action="/admin/update/<?php echo $this->thing["slug"] . "/" . $this->thing["id"]; ?>" method="post" class="row" enctype="multipart/form-data">
         <?php
         if ($this->thing["slug"] === "info") {
             ?>
