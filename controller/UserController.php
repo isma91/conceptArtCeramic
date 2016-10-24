@@ -351,6 +351,7 @@ class UserController
             $thing["slug"] = $type;
             $thing["id"] = $id;
         }
+        $thing["id"] = $id;
         $this->redirectIfNotLoged("admin#update", array("error" => $error, "success" => $success, "thing" => $thing));
     }
 
