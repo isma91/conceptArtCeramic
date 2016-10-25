@@ -13,9 +13,17 @@
 <body>
 <?php include("menu.php"); ?>
 <div class="owl-carousel owl-theme" >
-    <div><img src="../../media/img/homePage/1.jpg"></div>
-    <div><img src="../../media/img/homePage/2.jpg"></div>
-    <div><img src="../../media/img/homePage/3.jpg"></div>
+    <?php
+    $directory = __DIR__ . "/../../../media/img/homePage/";
+    $files = scandir($directory);
+    foreach ($files as $file) {
+        if ($file !== "." && $file !== ".." && $file !== "index.php") {
+            ?>
+            <div><img src="../../media/img/homePage/<?php echo $file; ?>"></div>
+            <?php
+        }
+    }
+    ?>
 </div>
 <div class="container">
     <div class="row center">
