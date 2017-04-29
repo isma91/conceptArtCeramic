@@ -19,7 +19,7 @@
             foreach ($this->categoriesMaterialsProducts as $category => $array) {
                 if (count($array) != 0 && $array["count"] != 0) {
                     ?>
-                    <div class="col s12 m4 l3">
+                    <div class="col s12 m4 l4">
                         <div class="card">
                             <div class="card-image">
                                 <a class="productImg" href="/products/<?php echo $array["slug"]; ?>" ><img class="responsive-img" src="../../media/img/product/<?php echo $array["id"] . "/" . $array["img"] ?>"></a>
@@ -36,7 +36,7 @@
             foreach ($this->categoriesMaterialsProducts as $material => $array) {
                 if (count($array) != 0 && $array["count"] != 0) {
                     ?>
-                    <div class="col s12 m4 l3">
+                    <div class="col s12 m4 l4">
                         <div class="card">
                             <div class="card-image">
                                 <a class="productImg" href="/products/<?php echo $array["categorySlug"] . "/" . $array["slug"]; ?>" ><img class="responsive-img" src="../../media/img/product/<?php echo $array["product"]["id"] . "/" . $array["product"]["img"] ?>"></a>
@@ -53,7 +53,7 @@
             if (count($this->categoriesMaterialsProducts) != 0) {
                 foreach ($this->categoriesMaterialsProducts as $product) {
                     ?>
-                    <div class="col s12 m4 l3">
+                    <div class="col s12 m4 l4">
                         <div class="card">
                             <div class="card-image">
                                 <a class="productImg" href="/product/<?php echo $product["id"]; ?>" ><img class="responsive-img" src="../../media/img/product/<?php echo $product["id"] . "/" . $product["img"] ?>"></a>
@@ -67,7 +67,7 @@
                 }
             } else {
                 ?>
-                <div class="col s12 m4 l3">
+                <div class="col s12 m4 l4">
                     <div class="row">
                         <p class="title">Pas de Produit</p>
                     </div>
