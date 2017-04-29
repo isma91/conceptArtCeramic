@@ -85,9 +85,9 @@ $router->get("/product/:id", "Site#product");
  */
 $router->post("/product/:id", "Site#sendDevis");
 /*
- * Display the About Page
+ * Display the Cini Page
  */
-$router->get("/about", "Site#about");
+$router->get("/cini", "Site#cini");
 /*
  * Display the Contact Page
  */
