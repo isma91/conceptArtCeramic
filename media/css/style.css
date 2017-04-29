@@ -64,6 +64,7 @@ nav {
 	background-color: #FFFFFF;
 }
 nav ul li a {
+	font-size: 1.2em;
 	color: #000000;
 }
 nav ul a:hover {
@@ -120,9 +121,10 @@ footer.page-footer .footer-copyright,
 	width: 100%;
 	margin: 0;
 }
-.owl-stage-outer {
+.owl-stage-outer,
+.owl-stage {
 	width: 100%;
-	max-height: 75%;
+	max-height: 700px;
 }
 .dropdown-content {
 	border-top: solid 2px #26a69a;
@@ -152,8 +154,8 @@ footer.page-footer .footer-copyright,
 .productImg img {
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
-	-webkit-transition: 1s ease-in-out;
-	transition: 1s ease-in-out;
+	-webkit-transition: 0.5s ease-in-out;
+	transition: 0.5s ease-in-out;
 }
 .productImg img:hover {
 	-webkit-filter: grayscale(0);
@@ -161,4 +163,7 @@ footer.page-footer .footer-copyright,
 }
 td a {
 	display: block;
+}
+.button-collapse {
+	background-color: black;
 }
