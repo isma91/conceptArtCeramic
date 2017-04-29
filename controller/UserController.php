@@ -351,7 +351,7 @@ class UserController
             $thing["slug"] = $type;
             $thing["id"] = $id;
         }
-        $thing["id"] = $id;
+	$thing["id"] = $id;
         $this->redirectIfNotLoged("admin#update", array("error" => $error, "success" => $success, "thing" => $thing));
     }
 
@@ -392,7 +392,10 @@ class UserController
                     $oldImg[] = substr(str_replace("/", ".", $name), 7);
                 }
             }
-            $update = $product->update($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $oldImg, $_FILES['newImg']);
+	    if($_FILES["newImg"] === null || empty($_FILES["newImg"])){
+            	$_FILES["newImg"] = array();
+            }
+            $update = $product->update($_POST["frName"], $_POST["enName"], $_POST["category"], $_POST["material"], $_POST["size"], $_POST["usage"], $oldImg, $_FILES["newImg"]);
             $message = new Message();
             $messages = $message->getMessages();
             if ($update["error"] !== "") {
