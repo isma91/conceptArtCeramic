@@ -35,7 +35,7 @@
                         </li>
                         <li class="collection-item avatar">
                             <i class="material-icons medium">email</i>
-                            <span class="title"><a href="mailto:conceptceram@yahoo.com">conceptceram@yahoo.com</a></span>
+                            <span class="title">plus.renov@yahoo.fr</span>
                         </li>
                     </ul>
                 </div>
