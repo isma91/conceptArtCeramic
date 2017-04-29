@@ -12,24 +12,24 @@
 </head>
 <body>
 <?php include("menu.php"); ?>
-<div class="owl-carousel owl-theme" >
-    <?php
+<ul class="pgwSlideshow">
+<?php
     $directory = __DIR__ . "/../../../media/img/homePage/";
     $files = scandir($directory);
     foreach ($files as $file) {
         if ($file !== "." && $file !== ".." && $file !== "index.php") {
             ?>
-            <div><img src="../../media/img/homePage/<?php echo $file; ?>"></div>
+            <li><img src="../../media/img/homePage/<?php echo $file; ?>"></li>
             <?php
         }
     }
     ?>
-</div>
+</ul>
 <div class="container">
     <div class="row center">
-        <p class="flow-text">Today, modern architecture has revived faience with simple and original models.</p>
-        <p class="flow-text">We have a quality collection, with respect for tradition and with a range of color and broad accessory.</p>
-        <p class="flow-text">Our company's aim is to discover our cultural and artistic works.</p>
+        <p class="flow-text"></p>
+        <p class="flow-text"></p>
+        <p class="flow-text"></p>
     </div>
 </div>
 <?php include("footer.html"); ?>
