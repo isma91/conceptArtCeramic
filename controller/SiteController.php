@@ -33,9 +33,9 @@ class SiteController
         $this->checkMaintenance("site#index");
     }
 
-    public function about()
+    public function cini()
     {
-        $this->checkMaintenance("site#about");
+        $this->checkMaintenance("site#cini");
     }
 
     public function contact()
@@ -159,6 +159,7 @@ class SiteController
             }
         }
         $add = $form->add("contact", $_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
+        mail();
         if ($add["error"] === "") {
             $view->set("success", $messages["success"]["addForm"]);
         } else {
