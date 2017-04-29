@@ -38,7 +38,7 @@ foreach ($categories as $category) {
         <a href="#" data-activates="menuMobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
-            <li><a href="/about">Why Choose the Tile ?</a></li>
+            <li><a href="/cini">The Tile ?</a></li>
             <li><a class="dropdown-button-menu" href="/products" data-activates="menuDropdownProduct">Our Products</a></li>
             <li><a href="/contact">Contact Us</a></li>
             <li><a class="language" href="">FR</a></li>
@@ -46,7 +46,7 @@ foreach ($categories as $category) {
         </ul>
         <ul class="side-nav" id="menuMobile">
             <li><a href="/">Home</a></li>
-            <li><a href="/about">Why Choose the Çini ?</a></li>
+            <li><a href="/cini">The Çini ?</a></li>
             <li><a class="dropdown-button-menu" href="/products">Our Products</a></li>
             <li><a href="/contact">Contact Us</a></li>
             <li><a class="language" href="">FR</a></li>

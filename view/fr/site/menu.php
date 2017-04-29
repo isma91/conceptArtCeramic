@@ -38,7 +38,7 @@ foreach ($categories as $category) {
         <a href="#" data-activates="menuMobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="/">Accueil</a></li>
-            <li><a href="/about">Pour Choisir Le Çini ?</a></li>
+            <li><a href="/cini">Le Çini ?</a></li>
             <li><a class="dropdown-button-menu" href="/products" data-activates="menuDropdownProduct">Nos Produits</a></li>
             <li><a href="/contact">Nous Contacter</a></li>
             <li><a class="language" href="">FR</a></li>
@@ -46,7 +46,7 @@ foreach ($categories as $category) {
         </ul>
         <ul class="side-nav" id="menuMobile">
             <li><a href="/">Accueil</a></li>
-            <li><a href="/about">Pour Choisir Le Çini ?</a></li>
+            <li><a href="/cini">Le Çini ?</a></li>
             <li><a class="dropdown-button-menu" href="/products">Nos Produits</a></li>
             <li><a href="/contact">Nous Contacter</a></li>
             <li><a class="language" href="">FR</a></li>
