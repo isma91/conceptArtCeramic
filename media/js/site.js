@@ -1,13 +1,10 @@
 $(document).ready(function () {
     $('.scrollspy').scrollSpy();
     $(".button-collapse").sideNav();
-    $('.owl-carousel').owlCarousel({
-        items: 1,
-        loop: true,
-        nav: true,
-        navText: ["<", ">"],
-        autoplay: true,
-        autoplayTimeout: 3000
+    $(".pgwSlideshow").pgwSlideshow({
+        transitionEffect: "fading",
+        //autoSlide: true,
+	//intervalDuration: 3000
     });
     $('.dropdown-button-menu').dropdown({
         inDuration: 500,
