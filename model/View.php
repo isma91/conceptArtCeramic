@@ -118,8 +118,6 @@ class View
             "materialize.min.css",
             "google_material_icons.css",
             "font.css",
-            "owl.carousel.min.css",
-            "owl.theme.default.min.css",
             "pgwslideshow.min.css",
             "style.css",
         );
@@ -127,14 +125,13 @@ class View
             "jquery-2.1.4.min.js",
             "mui.min.js",
             "materialize.min.js",
-            "owl.carousel.min.js",
             "pgwslideshow.min.js",
             "site.js",
             "switchLanguage.js",
             "logout.js",
         );
         $imgAssest = array(
-            "logo" => "logo.jpg",
+            "logo" => "logo.png",
         );
         $file = rtrim(__DIR__, '/') . "/" . "../view/" . $_SESSION["lang"] . "/";
         for ($k = 0; $k < $pathCount; $k = $k + 1) {
