@@ -5,6 +5,7 @@ namespace controller;
 use model\Bdd;
 use model\Config;
 use model\Form;
+use model\Mail;
 use model\Message;
 use model\Product;
 use model\View;
@@ -146,6 +147,7 @@ class SiteController
     public function sendMessage()
     {
         $view = new View("site#contact");
+        $mail = new Mail();
         $form = new Form();
         $message = new Message();
         $messages = $message->getMessages();
@@ -158,15 +160,15 @@ class SiteController
                 break;
             }
         }
+        $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
         $add = $form->add("contact", $_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
-        mail();
-        if ($add["error"] === "") {
+        if ($sendMail["return"] == true && $add["return"] == true) {
             $view->set("success", $messages["success"]["addForm"]);
         } else {
             foreach ($_POST as $field => $value) {
                 $view->set($field, $value);
             }
-            $view->set("error", $add["error"]);
+            $view->set("error", $sendMail["error"]);
         }
         $view->render();
     }
@@ -175,6 +177,7 @@ class SiteController
     {
         $error = null;
         $success = null;
+        $mail = new Mail();
         $form = new Form();
         $message = new Message();
         $messages = $message->getMessages();
@@ -186,8 +189,9 @@ class SiteController
             }
         }
         if (empty($array)) {
+            $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
             $add = $form->add($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
-            if ($add["error"] === "") {
+            if ($sendMail["error"] === "" && $add["error"] === "") {
                 $success = $messages["success"]["addForm"];
             } else {
                 foreach ($_POST as $field => $value) {
