@@ -4,9 +4,10 @@
  *
  */
 return [
-    'host' => 'localhost',
-    'dbname' => 'conceptArtCeramic',
-    'user' => 'root',
-    'password' => '',
+    'host'        => 'localhost',
+    'dbname'      => 'conceptArtCeramic',
+    'user'        => 'root',
+    'password'    => '',
+    'emailTo'      => 'your_pro_email@mail.com',
     'maintenance' => 'false'
 ];
