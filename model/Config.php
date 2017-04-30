@@ -21,6 +21,7 @@ class Config
     private $_dbname;
     private $_username;
     private $_password;
+    private $_emailTo;
     private $_maintenance;
 
     /**
@@ -38,6 +39,23 @@ class Config
     {
         $this->_maintenance = $maintenance;
         $this->changeConfigFile('maintenance', $maintenance);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailTo()
+    {
+        return $this->_emailTo;
+    }
+
+    /**
+     * @param mixed $emailTo
+     */
+    public function setEmailTo($emailTo)
+    {
+        $this->_emailFrom = $emailTo;
+        $this->changeConfigFile('emailTo', $emailTo);
     }
 
     /**
@@ -118,10 +136,11 @@ class Config
         } else {
             $config = include '../config.php';
         }
-        $this->_host = $config["host"];
-        $this->_dbname = $config["dbname"];
-        $this->_username = $config["user"];
-        $this->_password = $config["password"];
+        $this->_host        = $config["host"];
+        $this->_dbname      = $config["dbname"];
+        $this->_username    = $config["user"];
+        $this->_password    = $config["password"];
+        $this->_emailTo     = $config["emailTo"];
         $this->_maintenance = $config["maintenance"];
     }
 
