@@ -33,7 +33,7 @@ class Mail
                 $product = new Product($idProduit);
                 $productName = $product->getFrName();
                 $link = "www.conceptartceramic.com/product/" . $idProduit;
-                $messageEmail = '<html><body><h1>Demande de Contact de "' . $name . '"</h1></br><h2>Email: "' . $email . '"</h2></br><h3>Message : "' . $message . '"</h3></br><h4>Produit: <a href="' . $link . '">' . $productName . '</a></a></h4></body></html>';
+                $messageEmail = '<html><body><h1>Demande de Devis de "' . $name . '"</h1></br><h2>Email: "' . $email . '"</h2></br><h3>Message : "' . $message . '"</h3></br><h4>Produit: <a href="' . $link . '">' . $productName . '</a></a></h4></body></html>';
             }
             $send = mail($emailTo, $subject, $messageEmail, $headers);
             if($send) {

@@ -189,7 +189,7 @@ class SiteController
             }
         }
         if (empty($array)) {
-            $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
+            $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
             $add = $form->add($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
             if ($sendMail["error"] === "" && $add["error"] === "") {
                 $success = $messages["success"]["addForm"];
