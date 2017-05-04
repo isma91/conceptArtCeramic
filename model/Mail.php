@@ -25,7 +25,8 @@ class Mail
             }
             $date = new \DateTime();
             $datesend = $date->format("d-m-Y H:i:s");
-            $headers = "MIME-Version: 1.0\r\n";
+            $headers = "From: conceptartceramic@gmail.com\r\n";
+            $headers = $headers . "MIME-Version: 1.0\r\n";
             $headers = $headers . "Content-Type: text/html; charset=ISO-8859-1\r\n";
             if ($idProduit == null) {
                 $messageEmail = '<html><body><h1>Demande de Contact de "' . $name . '"</h1></br><h2>Email: "' . $email . '"</h2></br><h3>Message : "' . $message . '"</h3></body></html>';
