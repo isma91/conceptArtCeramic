@@ -162,7 +162,7 @@ class SiteController
         }
         $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
         $add = $form->add("contact", $_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
-        if ($sendMail["return"] == true && $add["return"] == true) {
+        if ($sendMail["return"] == true) {
             $view->set("success", $messages["success"]["addForm"]);
         } else {
             foreach ($_POST as $field => $value) {
@@ -191,7 +191,7 @@ class SiteController
         if (empty($array)) {
             $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
             $add = $form->add($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
-            if ($sendMail["error"] === "" && $add["error"] === "") {
+            if ($sendMail["error"] === "") {
                 $success = $messages["success"]["addForm"];
             } else {
                 foreach ($_POST as $field => $value) {
