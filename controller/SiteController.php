@@ -148,7 +148,6 @@ class SiteController
     {
         $view = new View("site#contact");
         $mail = new Mail();
-        $form = new Form();
         $message = new Message();
         $messages = $message->getMessages();
         foreach ($_POST as $field => $value) {
@@ -161,7 +160,6 @@ class SiteController
             }
         }
         $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
-        $add = $form->add("contact", $_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"]);
         if ($sendMail["return"] == true) {
             $view->set("success", $messages["success"]["addForm"]);
         } else {
@@ -178,7 +176,6 @@ class SiteController
         $error = null;
         $success = null;
         $mail = new Mail();
-        $form = new Form();
         $message = new Message();
         $messages = $message->getMessages();
         $array = array();
@@ -190,7 +187,6 @@ class SiteController
         }
         if (empty($array)) {
             $sendMail = $mail->sendMail($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
-            $add = $form->add($_POST["name"], $_POST["email"], $_POST["tel"], $_POST["message"], $id);
             if ($sendMail["error"] === "") {
                 $success = $messages["success"]["addForm"];
             } else {
