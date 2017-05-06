@@ -19,7 +19,7 @@
 </div>
 <ul class="pgwSlideshow">
     <?php
-    $directory = __DIR__ . "/../../../media/img/homePage/";
+    $directory = __DIR__ . "/../../../media/img/cini/";
     $files = scandir($directory);
     foreach ($files as $file) {
         if ($file !== "." && $file !== ".." && $file !== "index.php") {
