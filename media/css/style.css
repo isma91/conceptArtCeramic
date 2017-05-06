@@ -167,3 +167,6 @@ td a {
 .button-collapse {
 	background-color: black;
 }
+#link {
+	text-decoration: underline;
+}
