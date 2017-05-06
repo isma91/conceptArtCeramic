@@ -27,11 +27,11 @@
                     <ul class="collection">
                         <li class="collection-item avatar">
                             <i class="material-icons medium">location_city</i>
-                            <span class="title">Les Ulis</span>
+                            <span class="title">1 Avenue de Laponie, 91940 Les Ulis, France</span>
                         </li>
                         <li class="collection-item avatar">
                             <i class="material-icons medium">phone</i>
-                            <span class="title">0123456789</span>
+                            <span class="title">0698192210</span>
                         </li>
                         <li class="collection-item avatar">
                             <i class="material-icons medium">email</i>
