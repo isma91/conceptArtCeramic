@@ -24,7 +24,7 @@
     foreach ($files as $file) {
         if ($file !== "." && $file !== ".." && $file !== "index.php") {
             ?>
-            <li><img src="../../media/img/homePage/<?php echo $file; ?>"></li>
+            <li><img src="../../media/img/cini/<?php echo $file; ?>"></li>
             <?php
         }
     }
