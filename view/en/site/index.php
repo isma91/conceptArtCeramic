@@ -27,8 +27,8 @@
 </ul>
 <div class="container">
     <div class="row center">
-        <p class="flow-text">We are specialized in renovation, adaptation and transformation in all types of homes.</p>
-        <p class="flow-text">With our 15 years of experience, we have the capabilities for any type of request, even the most specific.</p>
+        <p class="flow-text">We listen to you from conception to realization, we put at your disposal our expertise and our skills for all your requests concerning the main work and the second work.</p>
+        <p class="flow-text">We guarantee you a clean work and deadlines always respected.</p>
         <p class="flow-text">The pictures above are done by us, with a before / after.</p>
         <p class="flow-text">You can contact us via <a id="link" href="/contact">the contact page</a>.</p>
         <p class="flow-text">We also produce <a id="link" href="/cini">çini</a>.</p>

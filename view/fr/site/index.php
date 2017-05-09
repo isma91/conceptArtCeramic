@@ -27,8 +27,8 @@
 </ul>
 <div class="container">
     <div class="row center">
-        <p class="flow-text">Nous sommes spécialisés dans la rénovation, l'adaptation et la transformation dans tout types d'habitions.</p>
-        <p class="flow-text">Fort de nos 15 années d'expérience, nous avons les capacités pour tout types de demandes, même les plus spécifiques.</p>
+        <p class="flow-text">A votre écoute de la conception à la réalisation, nous mettons à votre disposition notre expertise et nos compétences pour toutes vos demandes concernant le gros oeuvre et le second oeuvre.</p>
+        <p class="flow-text">Nous vous garantissons un travail propre et des délais toujours respectés.</p>
         <p class="flow-text">Les images ci-dessus sont des travaux réalisés par nos soins, avec un avant/après.</p>
         <p class="flow-text">Vous pouvez nous contacter via <a id="link" href="/contact">la page de contact</a>.</p>
         <p class="flow-text">Nous faisons aussi la production de <a id="link" href="/cini">çini</a>.</p>
